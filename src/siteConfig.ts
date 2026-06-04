@@ -1,4 +1,4 @@
-﻿import logoPng from "@/assets/png/logo.jpg";
+﻿import logoPng from "@/assets/png/logo.png";
 
 import facebookIconBlack from "@/assets/svg/facebook_black.svg";
 import instagramIconBlack from "@/assets/svg/instagram_black.svg";
@@ -39,19 +39,21 @@ export type EventListing = {
 };
 
 export type MenuTag =
-  | "Chef's Pick" | "Seasonal" | "Vegetarian" | "Vegan"
-  | "GF" | "Halal" | "New" | "Signature";
+  | "Vegetarian"
+  | "Spicy"
+  | "Signature"
+  | "Seafood"
+  | "Halal"
+  | "New";
 
 export type MenuCategory =
-  | "Grills"
-  | "Combos"
   | "Burgers"
-  | "Smash Burgers"
+  | "Pizzas"
+  | "Combos"
+  | "Grills"
   | "Starters"
   | "Light Meals"
-  | "Junior Favourites"
-  | "Desserts"
-  | "Drinks";
+  | "Extras";
 
 export type MenuEntry = {
   name: string;
@@ -66,7 +68,7 @@ export type MenuEntry = {
 export const siteConfig = {
   sections: {
     hero: true,
-    about: true,
+    about: false,
     todaysSpecial: false,
     tastingMenu: false,
     newsletter: false,
@@ -131,28 +133,28 @@ export const siteConfig = {
   foundedYear: 2022,
 
   colors: {
-    brand: {
-      primary: "#E8213A",
-      primarySoft: "#FF4D63",
-      primaryStrong: "#A81528",
-      onPrimary: "#FFFFFF",
-    },
-    ui: {
-      page: "#0D0D0D",
-      panel: "#161616",
-      panelAlt: "#1F1F1F",
-      text: "#F5F5F5",
-      textMuted: "rgba(245,245,245,0.65)",
-      textSubtle: "rgba(245,245,245,0.4)",
-      border: "rgba(245,245,245,0.08)",
-      borderStrong: "rgba(245,245,245,0.25)",
-    },
-    status: {
-      success: "#4ADE80",
-      warning: "#F4A124",
-      danger: "#E8213A",
-    },
+  brand: {
+    primary: "#C4521B",      // Deep, earthy orange (terracotta / burnt orange)
+    primarySoft: "#DD6B34",  // Softer, slightly brighter orange for hover
+    primaryStrong: "#9A3F12", // Darker, richer orange-brown for contrast
+    onPrimary: "#FFF8F0",    // Soft cream for text on primary
   },
+  ui: {
+    page: "#FDF8F2",         // Warm off-white / cream background (softer on eyes)
+    panel: "#FFFFFF",        // Clean white cards for contrast
+    panelAlt: "#FFF3E8",     // Very light orange-tinted alt background
+    text: "#2C241E",         // Dark brownish-grey (warm, not harsh black)
+    textMuted: "rgba(44, 36, 30, 0.65)",
+    textSubtle: "rgba(44, 36, 30, 0.45)",
+    border: "rgba(44, 36, 30, 0.08)",
+    borderStrong: "rgba(44, 36, 30, 0.15)",
+  },
+  status: {
+    success: "#B36B3C",      // Muted orange-brown for success (e.g., vegetarian tag)
+    warning: "#D98A4A",      // Warm golden-orange for spice / new items
+    danger: "#C4521B",       // Same as primary for consistency
+  },
+},
 
   story:
     "Ziggy's Burger Joint opened on Imam Haron Road in Lansdowne, Cape Town, with one mission - serve proper, hearty food without breaking the bank. From juicy smash burgers to fall-off-the-bone ribs and life-changing milkshakes, Ziggy's quickly became a go-to spot for families and food lovers across Cape Town. The vibe is casual, the portions are generous, and the passion behind every plate is real. Whether it's your first visit or your tenth, you'll leave full, happy, and already planning your next order.",
@@ -166,7 +168,7 @@ export const siteConfig = {
     signatureDish: "Rib Box",
   },
 
-  heroImage: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/480581141_612304408220366_335162677023192495_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=B6KdSl0e65QQ7kNvwF3E8DL&_nc_oc=AdoPuswNSoRWxvsZP5fz5zhCC_c3Bw6JY52cFNSGavjccwDoslBZZv2iV7Y2t6Xzlt4&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=YjgFJOXCpo_lSMR_YOHEOQ&_nc_ss=7b289&oh=00_Af8SWW52lk5GKvQiXojr0FEe6WItHRKGbbVuSOyJ9SefrA&oe=6A246C84",
+  heroImage: "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/641443431_1545591187568782_7144585783010805637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Q7JcJx9GOmwQ7kNvwG-ZKId&_nc_oc=AdoSGN3yMuIq7AgxRsiJgchnvGWVbIndkfuSF6Js2A1DN7jZRALIaB5EVqmhGFStvUo&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=g5_z-xpAOu5yrnqfE4bCew&_nc_ss=79289&oh=00_Af8gctsdujfYDvbhZ1xtnZUdguNpRPaHy45w7yQuWQF2jA&oe=6A27511E",
   interiorImage: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481990407_623775607073246_9101643582111009020_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mouVvXzSQtMQ7kNvwGPt90L&_nc_oc=Adr9zMkTqkXY0srCoPsNMrYNqagtyQsB8J_UL8bPGqXEinTJ1iJFML2io-TAYYW14Sc&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=1EsF7E40EP5NKKSD9vhLLg&_nc_ss=7b289&oh=00_Af8anyxjJkML84YjyajZOpADnGLB1lLFl3YdqyQRdtBWkQ&oe=6A247A9B",
 
   stats: [
@@ -206,23 +208,18 @@ export const siteConfig = {
   },
 
   menuFilters: {
-    categories: [
-      "All",
-      "Grills",
-      "Combos",
-      "Burgers",
-      "Smash Burgers",
-      "Starters",
-      "Light Meals",
-      "Junior Favourites",
-      "Desserts",
-      "Drinks",
-    ] as const,
-    tags: [
-      "Chef's Pick", "Seasonal", "Vegetarian", "Vegan",
-      "GF", "Halal", "New", "Signature",
-    ] as MenuTag[],
-  },
+  categories: [
+    "All",
+    "Burgers",
+    "Pizzas",
+    "Combos",
+    "Grills",
+    "Starters",
+    "Light Meals",
+    "Extras"
+  ] as const,
+  tags: ["Vegetarian", "Spicy", "Signature", "Seafood", "Halal", "New"] as MenuTag[],
+},
 
   todaysSpecial: {
     name: "The Rib Box",
@@ -242,75 +239,84 @@ export const siteConfig = {
   },
 
   menu: [
-    // GRILLS
-    { name: "Rib Eye Steak 350g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R255", category: "Grills", tags: [], image: "" },
-    { name: "T-Bone Steak 350g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R245", category: "Grills", tags: ["Chef's Pick"], image: "" },
-    { name: "Fillet Steak 200g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R235", category: "Grills", tags: [], image: "" },
-    { name: "Tomahawk Steak", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R355", category: "Grills", tags: ["Signature"], image: "" },
-    { name: "Rump Steak 350g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R235", category: "Grills", tags: [], image: "" },
-    { name: "Sirloin Steak 350g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R245", category: "Grills", tags: [], image: "" },
-    { name: "Beef Ribs 500g", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R295", category: "Grills", tags: [], image: "" },
-    { name: "4 Lamb Cutlets", description: "Served with fries or mash potato, crispy onion rings and garlic aioli.", price: "R245", category: "Grills", tags: [], image: "" },
-    { name: "Lamb Shank", description: "Garlic, red BBQ sauce, creamy mash, onion rings and garlic aioli.", price: "R315", category: "Grills", tags: ["Signature"], image: "" },
-    { name: "Rib Box", description: "1kg beef ribs, BBQ sausage, 6 full sticky wings, fries and onion rings.", price: "R600", category: "Grills", tags: ["Signature", "Chef's Pick"], image: "" },
+    // ===== BURGERS =====
+    { name: "ORIGINAL SINGLE", description: "100% Beef burger with cheese & garnish", price: "R90", category: "Burgers", tags: [], image: "" },
+    { name: "ORIGINAL DOUBLE", description: "200% Beef burger with cheese & garnish", price: "R115", category: "Burgers", tags: [], image: "" },
+    { name: "CHILLI CHEESE SINGLE", description: "100% Beef burger, cheese, jalapeno topped with PF spicy sauce", price: "R100", category: "Burgers", tags: ["Spicy"], image: "" },
+    { name: "CHILLI CHEESE DOUBLE", description: "200% Beef burger, cheese, jalapeno topped with PF spicy sauce", price: "R125", category: "Burgers", tags: ["Spicy"], image: "" },
+    { name: "FUNGHI BURGER", description: "100% Beef burger with mushroom sauce, braised onion & cheese", price: "R110", category: "Burgers", tags: [], image: "" },
+    { name: "BOMBO BURGER", description: "Tikka chicken fillet, braised mushroom, peppadew & avo", price: "R110", category: "Burgers", tags: [], image: "" },
+    { name: "KOREAN CRUNCH", description: "Lite & crispy chicken fillet dipped in Korean sauce with coleslaw & dressing", price: "R115", category: "Burgers", tags: [], image: "" },
+    { name: "HOT HONEY CRUNCH", description: "Lite & crispy chicken fillet, dipped in Hot Honey topped with pickles", price: "R125", category: "Burgers", tags: [], image: "" },
+    { name: "MASALA STEAK BURGER", description: "Chopped Masala steak, fresh garnish with special PF sauce", price: "R135", category: "Burgers", tags: [], image: "" },
+    { name: "GOURMET RIB BURGER", description: "Pulled beef ribs with braised onion, sticky BBQ sauce & avo", price: "R145", category: "Burgers", tags: [], image: "" },
+    { name: "RIB BEEF EATER", description: "100% Beef patty, chopped ribs, topped with caramelized onions", price: "R165", category: "Burgers", tags: [], image: "" },
 
-    // COMBOS
-    { name: "Prawn & Fillet Steak", description: "4 prawns with 200g fillet steak and a side. Served with fries.", price: "R285", category: "Combos", tags: [], image: "" },
-    { name: "Beef Ribs & Wings", description: "500g beef ribs with 4 full BBQ sticky wings.", price: "R285", category: "Combos", tags: [], image: "" },
-    { name: "Mixed Grill", description: "2 lamb cutlets, 1 sausage, 2 full sticky wings, 150g rump steak and 1 fried egg.", price: "R285", category: "Combos", tags: ["Chef's Pick"], image: "" },
+    // ===== PIZZAS =====
+    { name: "GARLIC PITA (MED)", description: "Freshly crushed garlic, oil, spread on a medium pizza base", price: "R42", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "MARGHERITA", description: "Pomodoro base, mozzarella & herb", price: "R88 / R98", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "GARLIC CHITA", description: "Garlic base, mozzarella & herb", price: "R88 / R98", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "PEPPERONI", description: "Pomodoro base, salami & mozzarella", price: "R126 / R136", category: "Pizzas", tags: [], image: "" },
+    { name: "HOT HONEY FETARONI", description: "Pomodoro base, salami, feta, chilli topped with Hot Honey", price: "R142 / R162", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "FOREST GUMP", description: "Mushroom, olive, spinach & feta", price: "R126 / R136", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "MANHATTAN", description: "BBQ chicken & mushrooms", price: "R132 / R152", category: "Pizzas", tags: [], image: "" },
+    { name: "CALIFORNIAN", description: "Portuguese chicken, pineapple & feta", price: "R138 / R158", category: "Pizzas", tags: [], image: "" },
+    { name: "YING YANG", description: "Portuguese chicken, peppadew, chilli & feta", price: "R154 / R172", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "FRANGO", description: "Portuguese chicken, mushroom, red onion & green pepper", price: "R144 / R158", category: "Pizzas", tags: [], image: "" },
+    { name: "BOMBAY", description: "Tilda chicken, mushroom, peppadew & avo", price: "R164 / R180", category: "Pizzas", tags: [], image: "" },
+    { name: "MEXICANA", description: "Spicy mince, jalapeno, peppadew & red onion", price: "R142 / R158", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "INDONESIAN", description: "Masala steak, red and green peppers & coriander", price: "R164 / R186", category: "Pizzas", tags: [], image: "" },
+    { name: "STICKY STEAK", description: "Sticky BBQ steak, caramelized onion & avo", price: "R164 / R186", category: "Pizzas", tags: [], image: "" },
+    { name: "SEAFOOD PIZZA", description: "Seafood mix, crab sticks, mussels, calamari & shrimp topped with chilli", price: "R158 / R182", category: "Pizzas", tags: ["Seafood"], image: "" },
+    { name: "KING PRAWN", description: "Grilled garlic prawns, peppadew & avo", price: "R186 / R206", category: "Pizzas", tags: ["Signature", "Seafood"], image: "" },
 
-    // BURGERS
-    { name: "Ziggy Beef Single", description: "180g beef patty, slice of cheese and garnish with a side of fries.", price: "R110", category: "Burgers", tags: [], image: "" },
-    { name: "Ziggy Beef Double", description: "2x 180g beef patties, 2x slices of cheese and garnish with a side of fries.", price: "R160", category: "Burgers", tags: [], image: "" },
-    { name: "Mister Beeg", description: "3x 180g beef patties, 3x slices of cheese, crispy onion rings, slice of pastrami, garnish with a side of fries.", price: "R195", category: "Burgers", tags: ["Signature"], image: "" },
-    { name: "Beef Full House", description: "2x 180g beef patties, slice of cheese, crispy onion rings, pastrami, 1x egg and garnish with a side of fries.", price: "R180", category: "Burgers", tags: [], image: "" },
-    { name: "De-Boned Rib Burger", description: "BBQ beef ribs, slice of cheese, crispy onion rings and garnish with a side of fries.", price: "R195", category: "Burgers", tags: ["Chef's Pick"], image: "" },
-    { name: "Ziggy Chicken Single", description: "Grilled chicken fillet, slice of cheese, garnish and a side of fries.", price: "R110", category: "Burgers", tags: [], image: "" },
-    { name: "Ziggy Chicken Double", description: "2x grilled chicken fillets, 2x slices of cheese, garnish and a side of fries.", price: "R160", category: "Burgers", tags: [], image: "" },
-    { name: "Crumbed Chicken", description: "Panko crumbed chicken breast, slice of cheese, coleslaw, red onion, pickles with a side of fries.", price: "R125", category: "Burgers", tags: [], image: "" },
+    // ===== STARTERS =====
+    { name: "CRUNCHY TENDERS", description: "Light & crispy chicken tenders with chips and PF dip", price: "R69", category: "Starters", tags: [], image: "" },
+    { name: "ULTIMATE WINGS", description: "5x Full wings BBQ or tikka with chips", price: "R98", category: "Starters", tags: [], image: "" },
+    { name: "KEBAABS", description: "4x Chicken kebaabs BBQ or tikka with chips", price: "R98", category: "Starters", tags: [], image: "" },
 
-    // SMASH BURGERS
-    { name: "Double Smash", description: "2x 100g smashed beef, 2x slices of cheese, crispy onions, inhouse sauce with a side of fries.", price: "R130", category: "Smash Burgers", tags: ["New"], image: "" },
-    { name: "Triple Smash", description: "3x 100g smashed beef, 3x slices of cheese, crispy onions, inhouse sauce with a side of fries.", price: "R155", category: "Smash Burgers", tags: ["New"], image: "" },
-    { name: "Pastrami Stack Smash", description: "3x 100g smashed beef, 3x slices of cheese, crispy onions, pastrami, inhouse sauce with a side of fries.", price: "R165", category: "Smash Burgers", tags: ["New", "Signature"], image: "" },
+    // ===== GRILLS =====
+    { name: "RIBS 400g 'Fall of The Bone'", description: "400g fall of the bone ribs with large chips", price: "R210", category: "Grills", tags: [], image: "" },
+    { name: "RIBS 800g 'Fall of The Bone'", description: "800g fall of the bone ribs with large chips", price: "R405", category: "Grills", tags: ["Signature"], image: "" },
 
-    // STARTERS
-    { name: "4 Full Sticky Wings", description: "4 BBQ sticky wings with a dipping sauce.", price: "R80", category: "Starters", tags: [], image: "" },
-    { name: "Cheesy Garlic Roll", description: "Garlic roll with melted mozzarella cheese.", price: "R75", category: "Starters", tags: ["Vegetarian"], image: "" },
-    { name: "Margherita Pizza", description: "Classic margherita with mozzarella.", price: "R130", category: "Starters", tags: ["Vegetarian"], image: "" },
-    { name: "Garlic Chita", description: "Garlic flavoured chita bread.", price: "R130", category: "Starters", tags: ["Vegetarian"], image: "" },
+    // ===== LIGHT MEALS =====
+    { name: "PF SALAD", description: "Chicken fillet strips on a bed of freshly made salad", price: "R85", category: "Light Meals", tags: [], image: "" },
 
-    // LIGHT MEALS
-    { name: "Chicken Schnitzel", description: "Panko crumbed chicken fillet with a slice of cheese, topped with mushroom sauce and fries.", price: "R145", category: "Light Meals", tags: [], image: "" },
-    { name: "8 Full Sticky Wings", description: "8 full BBQ basted wings served with fries.", price: "R155", category: "Light Meals", tags: [], image: "" },
-    { name: "Chicken Tenders", description: "Panko crumbed chicken tenders served with onion rings, a dipping sauce and fries.", price: "R125", category: "Light Meals", tags: [], image: "" },
+    // ===== COMBOS =====
+    { name: "BURGER WING COMBO", description: "Original burger, 5x full wings & chips", price: "R175", category: "Combos", tags: [], image: "" },
+    { name: "COMBO 1", description: "400g ribs, 5x full wings, nippai sausage & chips", price: "R305", category: "Combos", tags: [], image: "" },
+    { name: "COMBO 2", description: "Garlic pita, 400g ribs, 4x kebaabs & large chips", price: "R305", category: "Combos", tags: [], image: "" },
+    { name: "COMBO 3", description: "400g ribs, garlic pita, 6x crispy chicken strips with a spicy or sweet dip", price: "R305", category: "Combos", tags: [], image: "" },
+    { name: "ULTIMATE COMBO", description: "800g ribs, 10x wings, 4x skewers, 2x danhia sausage & 1x garlic pita", price: "R680", category: "Combos", tags: ["Signature"], image: "" },
 
-    // JUNIOR FAVOURITES
-    { name: "Cheese Burger", description: "Kids meal - all junior meals include fries.", price: "R85", category: "Junior Favourites", tags: [], image: "" },
-    { name: "Chicken Tenders (Kids)", description: "Kids meal - all junior meals include fries.", price: "R85", category: "Junior Favourites", tags: [], image: "" },
-    { name: "4 Full Wings (Kids)", description: "Kids meal - all junior meals include fries.", price: "R100", category: "Junior Favourites", tags: [], image: "" },
-
-    // DRINKS
-    { name: "Turkish Delight Gourmet Shake", description: "The one everyone talks about. Rich, indulgent, and genuinely life-changing.", price: "", category: "Drinks", tags: ["Signature"], image: "" },
-    { name: "Custard Dream Milkshake", description: "Creamy, smooth, and seriously good.", price: "", category: "Drinks", tags: ["Signature"], image: "" },
-    { name: "Strawberry Fluff", description: "Light and fruity - a crowd favourite.", price: "", category: "Drinks", tags: [], image: "" },
-    { name: "Chocolate Shake", description: "Classic chocolate milkshake done right.", price: "", category: "Drinks", tags: [], image: "" },
-    { name: "Mango Crush", description: "Refreshing mango crush - perfect with the ribs.", price: "", category: "Drinks", tags: [], image: "" },
-    { name: "Cappuccino", description: "Proper coffee to finish off your meal.", price: "", category: "Drinks", tags: [], image: "" },
+    // ===== EXTRAS (from the XTRAS table) =====
+    { name: "Chopped Chilli", description: "Fresh chopped chilli", price: "R10", category: "Extras", tags: ["Spicy"], image: "" },
+    { name: "Fried Egg", description: "Fried egg", price: "R18", category: "Extras", tags: [], image: "" },
+    { name: "Sliced Avo", description: "Fresh sliced avocado", price: "R18", category: "Extras", tags: [], image: "" },
+    { name: "Chips", description: "Side of chips", price: "R25", category: "Extras", tags: [], image: "" },
+    { name: "Cheese Slice", description: "Slice of cheese", price: "R16", category: "Extras", tags: [], image: "" },
+    { name: "Mushroom Sauce", description: "Creamy mushroom sauce", price: "R28", category: "Extras", tags: [], image: "" },
+    { name: "Danhai Nippi", description: "Danhai nippi (spicy sausage)", price: "R25", category: "Extras", tags: ["Spicy"], image: "" },
+    { name: "Free Range Chicken Fillet", description: "Grilled free range chicken fillet", price: "R35", category: "Extras", tags: [], image: "" },
+    { name: "Crispy Chicken Fillet", description: "Crispy fried chicken fillet", price: "R40", category: "Extras", tags: [], image: "" },
+    { name: "100% Beef Patty", description: "Beef patty", price: "R35", category: "Extras", tags: [], image: "" },
   ] as MenuEntry[],
 
   events: [] as EventListing[],
 
   gallery: [
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481330372_623898977060909_4459276160491978379_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=oWnGZLC5BNIQ7kNvwGt4jMz&_nc_oc=AdpkgmpdeFXA4jOurXKwIKEpRDftt3igdy1ytmHY_uGVYkMg4OORal_Sdb1F5x0U6zA&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=Zqr8AKqaQnpZ67bIhBg_6Q&_nc_ss=7b289&oh=00_Af8f22yI_jW7yrFntq0Ld2pIHaLjg7ehSbay4v7aSokz_g&oe=6A245C31",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481223788_621464163971057_6111423230615608318_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=HSPovp78EGYQ7kNvwGzJ_7l&_nc_oc=AdqMWogKdFSlDPXPNhWOdtx9BE7GCUwbGfhOUE6deVQ-MBcWbh6WBe4nhX31vK-6tUc&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=YYDThekzLcwerLAF_Uj8zQ&_nc_ss=7b289&oh=00_Af_uGj_qiPQO3nlKv_Zj5hOGsxc-KZ9ll80Dv3ehcqMeZA&oe=6A2462FC",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481081173_620724357378371_5559074575754404008_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Qg2pExdpTRAQ7kNvwGg5PyC&_nc_oc=AdoeirlBP2MeLyQVIg5XWXAj-tDotvEVSHg5Zmr86NcG0g4jCSJEJl6afL65ybTB01Q&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=2QAFunTpuo_q1JjhJwmeZA&_nc_ss=7b289&oh=00_Af8mBEd3cclOrvti7NvOz1A_aAJn8wLVfEh7eXLPAsU0KA&oe=6A2453D9",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481059394_620724207378386_2570915905167065933_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=oAWV0qsBRuYQ7kNvwHX3g7-&_nc_oc=AdrMEWif19AZXOlDtcv8sgLIqbkZlE7Ppiq0So4zebAdrD3A92-BViR_TKWlHMXQ0mQ&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=vsRZyLxkMTB0f5XdZ3qzhQ&_nc_ss=7b289&oh=00_Af9H34LS_zzegxB8Ln1tERNqQ6WnA0DkM7f3dq0vHiiNag&oe=6A246126",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481900459_620723297378477_2143535696525668034_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=v6kOj6nOyscQ7kNvwGghiF2&_nc_oc=AdpjIkdzAhWtqz6rhWsAqmZs3moEV9Qe05WrW2-LyphHCGAGy5blG0JiG-YOKURrk1s&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=WqLT7fznZHHDf1jq--bu5w&_nc_ss=7b289&oh=00_Af-XjtGuCLDarp6beG3F1vAS_s7z_mxMEKx4adDDcUl80Q&oe=6A245AA9",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481083194_620723440711796_7531099129734140359_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=442K9J8sOYkQ7kNvwGpMuLa&_nc_oc=AdoKQVwhn7yGA8lLrUPEDQKf_DLyivSAWa6kCvP3VnUVEn6t4tCfGfA88RRO5NuvyEI&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=IIQSuy7ozhz9iM-bm_-4DQ&_nc_ss=7b289&oh=00_Af_I2Gifs3HyzjdpkQye59g-9Y4iSaWDBVcxbpXqcEMtaQ&oe=6A24577D",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481772188_620032474114226_5367894249099007801_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=mVsJRXJy2RQQ7kNvwF1klHP&_nc_oc=AdoDESk0XUzK1CtJln1Frhlnn7xWtn_cc5XSBa_S09_MpDojPXJ5NJqq0a-eyZbY_PY&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=cltvF62UK2jfqNAOQUypbg&_nc_ss=7b289&oh=00_Af8AGQq8SzRRgk8XtUzkfBPNbg6fvInVXvDf_ttnc23jVw&oe=6A24737F",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481159643_620017070782433_3640407460511111616_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=db-1p4MsYggQ7kNvwHFjH-A&_nc_oc=AdptOz7uOIIBrw5bNIPNVBAJ30GC5LlhM1s6OC3s5fRfRRZeEQUaAPLFRO-0rQuez-Q&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=xCk74B3eUxKFAhlffAS3cg&_nc_ss=7b289&oh=00_Af-S6lAVES3psR9wKBxFIGVBLzB9W615sk2ZTu_AEDuAJA&oe=6A24513F",
-    "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/482024885_620016894115784_6393030030656684404_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=qsaGVX_EdjEQ7kNvwGWsYy8&_nc_oc=AdpwlLcTRkj2HQb7XKZQiOJMzsFFszVhe_stleXPrQ4YHoTToVjizebNLVxP1gWXmjw&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=_xVL3srs2mrmEo_faPK9HQ&_nc_ss=7b289&oh=00_Af_UT3vQiN-UBh8B3eNgpUuei_8Qso59km5dHkX42fxRZQ&oe=6A24775D",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/641283763_1545591180902116_4668162461911570044_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_2tgzyzOYw8Q7kNvwE8_4rN&_nc_oc=Adp2_gZ6F-Dvmoi_3URl9w1cN7mxVgFkgJbnHK8ConzjINlxHWOz5DaTcvWEKZpkzhc&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=1Xy3tiqBcLE2MtwoUYFJnQ&_nc_ss=79289&oh=00_Af_xmMZaj6GAp47Wrc2aJFdIgzfCoNnaNO-pUQUFr2d0oQ&oe=6A277054",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/640922769_1545591170902117_3965257682204357457_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BK4zvGL0i2UQ7kNvwFPQLr-&_nc_oc=AdrAbyZQu9G30PBhiObJXSaV60LgCwOTMnMiNzpDEhAzqTm1YbuwbX98FLQ63OT_fos&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=BeMnmPYasCbenTh2ymiM1w&_nc_ss=79289&oh=00_Af-fkHOgmIViZX1egqVb_LDFJij83jBB8mTKLKzsrBZfSw&oe=6A277A4B",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/625003270_1524045743056660_1084960176279511790_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=aH-i365jmW0Q7kNvwFGYTDT&_nc_oc=AdqnzQGvC8eYZ8ScOhg0p6Ib_bSuLI_fTMo3RpF0x4J2sIDYuULY-T06F9ypwpRfJaY&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=a0F4pU4H2qwfTLF435z60w&_nc_ss=79289&oh=00_Af_JhYAAgppG3L6xXCAFrsE-igbVYeMGpaoYYTo6wvIx9w&oe=6A2775C8",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/622792707_1520453933415841_480797047736333375_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-JGNIqoiOswQ7kNvwGQVIAN&_nc_oc=AdqoJPhPFMTqmnYrbodjCHkRFAsRpsWDUephrFYfS75khgfEXU4BNzANybDVW38W_CI&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=yA5DTY1U4NSKOH09PWwVGw&_nc_ss=79289&oh=00_Af-nhsYFIu1YbAjGDwLLmta0vb7HuzmfPiKOpyjByD-pIg&oe=6A27753D",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/622801797_1520453923415842_702769200983164966_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ucCmxjjNLzoQ7kNvwH2n3KU&_nc_oc=AdrCd4bLGHaBj3tZesVO6bGNZqWp-TqoPC2Cr1YGvG6AHGMMHhxBit56O98SJxmja-A&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=5ZTS6XOkbhNzZ0Rz4f4ADg&_nc_ss=79289&oh=00_Af-Z0BeD2utZKODrVjSIX3x6lIt395wRaOO5DFuvVf14IA&oe=6A27733A",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605972673_1492746029519965_1001325332393708440_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xOpNT769nzIQ7kNvwFslCtc&_nc_oc=Adra79x9El5McwA0_qrYzc5c-_eHxS2ApUwi9NWBrraJA8PqE8sVUmhBE7xGbkdACVk&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=dnVzLHlgl1qXvU3wWSvXlA&_nc_ss=79289&oh=00_Af_ZdZLl2v7jDZEy0skKZccxfRg922hOS6ftNN4BsYpsRQ&oe=6A276E19",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605711389_1492745982853303_4353673147947474009_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7p1QKW_nL24Q7kNvwFBu6PC&_nc_oc=AdpquiycwY9EIQY3hED62hzODFroNizaoOSZ-7wbjFEFaYhJfbtG0xLkL9vKcgoeNlA&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=Apk3s5KfX5Wt4tv48D7qQA&_nc_ss=79289&oh=00_Af-UD4FiwQCNOaPUK8LRu02AaWloe1UobVkiGT7tOuFLjA&oe=6A2755EE",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605564745_1492746002853301_8342202110893597844_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LruEiimyBHkQ7kNvwHM2WDp&_nc_oc=Adq3-JCmRbhsixqXHNgZCFunQ6eOg2NYeFS6iM5YA-xStC6ThrEUNq-Gk05lNEWy5qU&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=pvkWSNW4-P_Ifl-VY2iaWg&_nc_ss=79289&oh=00_Af_0j5aZ2_HQP9BXzscPJ2vvnz3ZOCN8q-yzjtroJS5zOg&oe=6A277753",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/607198907_1492745986186636_3579470218406296968_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=i1CEAiQ--UAQ7kNvwEVEj5D&_nc_oc=AdoGjChsxVZv0QVkkFY19f39dVIfRhwutHASsi3cBxHZ0l5II2VmYbQtz6i-md_sQs8&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=YFiFq9O68_NUdtT8zx71zQ&_nc_ss=79289&oh=00_Af9HbHL2aTmlyOBd5yaC6wkeDD328cOK6KbeQHoeuZ0WrQ&oe=6A277930",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605808641_1492746006186634_972742256606910145_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hNRQbTnc53sQ7kNvwE0RvIP&_nc_oc=Adpf2bQbIh5-vaKsDyfk5CNTUG7dlZCVDY5YWS9ZOArOjtidZ_7dClwx9bBH1rSDQX8&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=FIgF-AV2Q4jm8XWs2BiyRA&_nc_ss=79289&oh=00_Af8hTk002EPvUa-y2xXEpX23bEEmebqtgqXY6BQFS7kMsg&oe=6A275EE7",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605720338_1492745992853302_6980270250551285461_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=niuRQ2Muo_UQ7kNvwGfHJvI&_nc_oc=AdoI0OjQchvA6ZkP4KP6Xvj_07ZVWSbfrrVFUZh70tyyVeJTxih80Ia2Gi5wsGANnzw&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=5j4rSminQY2uGLwrIzECrg&_nc_ss=79289&oh=00_Af85Nd5LqMEtSaInlwLT55P-a5VXxaowPVLe5aW0Le9FUw&oe=6A27807C",
+    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/606012438_1492745996186635_3098080510748781145_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=boh4XazebB4Q7kNvwHc-qEA&_nc_oc=Adplpj3MB9J1eVuQpmhaaQJ8_btAUcQJOaFQI5qf9Z6lTBLnZDwobNt1A_TLDO0mOBg&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=wQTxJuR2r3_60lEw5NUqHw&_nc_ss=79289&oh=00_Af-bJ4X1qHxUvqKU8-oD7eKeFaKjJkzc1AU2Nl6uCXU5yA&oe=6A275ADD",
   ],
 
   reviews: [

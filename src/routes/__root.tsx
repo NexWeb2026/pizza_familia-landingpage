@@ -4,7 +4,7 @@ import {
 } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appCss from "../styles.css?url";
-import logoFavicon from "@/assets/png/logo.jpg";
+import logoFavicon from "@/assets/png/logo.png";
 
 import { Navbar } from "@/components/Navbar";
 import { StickyBanner } from "@/components/StickyBanner";
