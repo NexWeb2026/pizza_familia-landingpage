@@ -11,14 +11,14 @@ type NavItem = { label: string; to: string; subs: SubLink[] };
 function getNavItems() {
   const homeSubs: SubLink[] = [
     siteConfig.sections.about && { label: "Our Story", to: "/", hash: "our-story" },
-    siteConfig.sections.todaysSpecial && { label: "Today's Special", to: "/", hash: "tonights-special" },
+    siteConfig.sections.todaysSpecial && { label: "Specials", to: "/", hash: "tonights-special" },
     siteConfig.sections.reviews && { label: "Reviews", to: "/", hash: "reviews" },
     siteConfig.sections.pressFeatures && { label: "Press", to: "/", hash: "press-features" },
     siteConfig.sections.newsletter && { label: "Get Updates", to: "/", hash: "stay-updated" },
   ].filter(Boolean) as SubLink[];
 
   const menuSubs: SubLink[] = [
-    siteConfig.sections.menuSpecial && siteConfig.sections.todaysSpecial && { label: "Today's Special", to: "/menu", hash: "tonights-special" },
+    siteConfig.sections.menuSpecial && siteConfig.sections.todaysSpecial && { label: "Specials", to: "/menu", hash: "tonights-special" },
     siteConfig.sections.menuGrid && { label: "Grills", to: "/menu", hash: "grills" },
     siteConfig.sections.menuGrid && { label: "Combos", to: "/menu", hash: "combos" },
     siteConfig.sections.menuGrid && { label: "Burgers", to: "/menu", hash: "burgers" },
@@ -112,7 +112,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden h-9 shrink-0 items-center lg:flex">
-          <SocialIcons variant="color" size={18} />
+          <SocialIcons variant="black" size={18} />
         </div>
 
         <button
@@ -172,7 +172,7 @@ export function Navbar() {
             })}
             <div className="mt-4 rounded-2xl border p-4" style={{ borderColor: "var(--ui-border)", background: "var(--ui-panel-alt)" }}>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em]" style={{ color: "var(--ui-text-muted)" }}>Socials</p>
-              <SocialIcons variant="color" size={20} />
+              <SocialIcons variant="black" size={20} />
               <p className="mt-3 text-xs uppercase tracking-[0.08em]" style={{ color: "var(--ui-text-subtle)" }}>{siteConfig.socials.handle}</p>
             </div>
           </div>

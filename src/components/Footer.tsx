@@ -11,6 +11,9 @@ export function Footer() {
   const showMenuLink = siteConfig.sections.menuSpecial || siteConfig.sections.menuGrid;
   const showSocialsLink = siteConfig.sections.socials && (siteConfig.sections.upcomingEvents || siteConfig.sections.photoGallery || siteConfig.sections.privateHire);
 
+  const primaryLocation = siteConfig.locations[0];
+  const hours = primaryLocation?.hours ?? [];
+
   return (
     <footer className="mt-16" style={{ background: "var(--ui-panel)", borderTop: "1px solid var(--ui-border-strong)" }}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 md:grid-cols-4">
@@ -28,15 +31,15 @@ export function Footer() {
         <div>
           <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.14em]" style={{ color: "var(--brand-primary)" }}>Drop In</h4>
           <ul className="space-y-2 text-sm" style={{ color: "var(--ui-text-muted)" }}>
-            <li className="flex gap-2"><MapPin size={14} className="mt-0.5 shrink-0" />{siteConfig.location.address}</li>
-            <li className="flex gap-2"><Phone size={14} className="mt-0.5 shrink-0" /><a href={`tel:${siteConfig.contact.phone}`}>{siteConfig.contact.phone}</a></li>
+            <li className="flex gap-2"><MapPin size={14} className="mt-0.5 shrink-0" />{primaryLocation?.address}</li>
+            <li className="flex gap-2"><Phone size={14} className="mt-0.5 shrink-0" /><a href={`tel:${primaryLocation?.phone}`}>{primaryLocation?.phone}</a></li>
           </ul>
         </div>
         <div>
           <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.14em]" style={{ color: "var(--brand-primary)" }}>When We're Open</h4>
-          {siteConfig.sections.hours ? (
+          {siteConfig.sections.hours && hours.length > 0 ? (
             <ul className="space-y-1 text-xs" style={{ color: "var(--ui-text-muted)" }}>
-              {siteConfig.hours.map((h) => (
+              {hours.map((h) => (
                 <li key={h.day} className="flex justify-between gap-3">
                   <span>{h.day}</span>
                   <span>{h.isOpen ? `${h.openTime}-${h.closeTime}` : "Closed"}</span>
@@ -49,7 +52,7 @@ export function Footer() {
         </div>
         <div>
           <h4 className="mb-3 text-sm font-bold uppercase tracking-[0.14em]" style={{ color: "var(--brand-primary)" }}>Socials</h4>
-          <SocialIcons variant="color" size={22} />
+          <SocialIcons variant="black" size={22} />
           <p className="mt-3 text-xs" style={{ color: "var(--ui-text-subtle)" }}>{siteConfig.socials.handle}</p>
           <div className="mt-4 flex flex-col gap-2">
             {showMenuLink && <Link to="/menu" className="text-sm font-semibold uppercase tracking-[0.08em] hover:underline" style={{ color: "var(--ui-text)" }}>See the Menu</Link>}

@@ -51,55 +51,70 @@ export function MenuSection() {
   if (!showMenuGrid && !showTastingMenu) return null;
 
   return (
-    
     <section id="menu-grid" className="px-4 py-14">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8 text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em]" style={{ color: "var(--brand-primary)" }}>Our Menu</p>
-          <h1 className="text-4xl font-black tracking-[0.02em] md:text-5xl">What's on the Grill</h1>
+        <div className="mb-10">
+          <p className="section-label mb-2">Our Menu</p>
+          <h1
+            className="text-5xl font-black leading-[0.9] md:text-7xl"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            What's on<br />the Grill
+          </h1>
         </div>
 
-        {showTastingMenu && (
+        {/* {showTastingMenu && (
           <div
-            className="mb-8 flex flex-col items-start gap-4 rounded-2xl border p-6 md:flex-row md:items-center"
-            style={{ background: "var(--ui-panel)", borderColor: "var(--brand-primary-strong)" }}
+            className="mb-8 flex flex-col items-start gap-4 border-l-4 p-6 md:flex-row md:items-center"
+            style={{ background: "var(--ui-panel)", borderColor: "var(--brand-primary)" }}
           >
             <div className="flex-1">
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.28em]" style={{ color: "var(--brand-primary)" }}>{siteConfig.tastingMenu.courses}-Course Experience</p>
-              <h3 className="text-2xl font-black tracking-[0.02em]">{siteConfig.tastingMenu.name}</h3>
-              <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--ui-text-muted)" }}>{siteConfig.tastingMenu.note}</p>
+              <p className="section-label mb-1">{siteConfig.tastingMenu.courses}-Course Experience</p>
+              <h3 className="text-2xl font-black">{siteConfig.tastingMenu.name}</h3>
+              <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--ui-text-muted)" }}>
+                {siteConfig.tastingMenu.note}
+              </p>
             </div>
-            <div className="text-right">
-              <div className="text-xl font-black tracking-[0.04em]" style={{ color: "var(--brand-primary)" }}>
+            <div>
+              <div
+                className="text-2xl font-black tracking-[0.04em]"
+                style={{ color: "var(--brand-primary)", fontFamily: "var(--font-heading)" }}
+              >
                 {siteConfig.tastingMenu.price}
               </div>
               {siteConfig.tastingMenu.winePairing && (
-                <div className="text-xs font-medium uppercase tracking-[0.08em]" style={{ color: "var(--ui-text-muted)" }}>+ {siteConfig.tastingMenu.winePairing}</div>
+                <div className="text-xs font-bold uppercase tracking-[0.08em]" style={{ color: "var(--ui-text-muted)" }}>
+                  + {siteConfig.tastingMenu.winePairing}
+                </div>
               )}
             </div>
           </div>
-        )}
+        )} */}
 
         {showMenuGrid && (
           <>
+            {/* Filters */}
             <div className="mb-8 space-y-4">
+              {/* Category filter — sharp tab buttons */}
               <div className="flex flex-wrap gap-2">
                 {categories.map((c) => (
                   <button
                     key={c}
                     onClick={() => setCategory(c)}
                     type="button"
-                    className="min-h-11 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] transition-colors"
+                    className="min-h-10 px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] transition-colors"
                     style={{
                       background: category === c ? "var(--brand-primary)" : "var(--ui-panel)",
                       color: category === c ? "var(--brand-on-primary)" : "var(--ui-text-muted)",
-                      border: "1px solid var(--ui-border-strong)",
+                      border: "2px solid var(--ui-border-strong)",
                     }}
                   >
                     {c}
                   </button>
                 ))}
               </div>
+
+              {/* Tag filter */}
               <div className="flex flex-wrap gap-2">
                 {siteConfig.menuFilters.tags.map((t) => {
                   const active = tags.includes(t);
@@ -108,11 +123,11 @@ export function MenuSection() {
                       key={t}
                       onClick={() => toggleTag(t)}
                       type="button"
-                      className="min-h-11 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-[0.08em] transition-colors"
+                      className="min-h-9 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.08em] transition-colors"
                       style={{
                         background: active ? "var(--brand-primary-strong)" : "transparent",
                         color: active ? "var(--brand-on-primary)" : "var(--ui-text-muted)",
-                        border: `1px solid ${active ? "var(--brand-primary)" : "var(--ui-border)"}`,
+                        border: `2px solid ${active ? "var(--brand-primary)" : "var(--ui-border)"}`,
                       }}
                     >
                       {t}
@@ -120,39 +135,66 @@ export function MenuSection() {
                   );
                 })}
                 {tags.length > 0 && (
-                  <button onClick={() => setTags([])} type="button" className="text-xs font-bold uppercase tracking-[0.08em] underline" style={{ color: "var(--ui-text-subtle)" }}>
+                  <button
+                    onClick={() => setTags([])}
+                    type="button"
+                    className="text-xs font-bold uppercase tracking-[0.08em] underline"
+                    style={{ color: "var(--ui-text-subtle)" }}
+                  >
                     Clear tags
                   </button>
                 )}
               </div>
+
+              {/* Search */}
               <div className="relative max-w-md">
                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-60" />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search the menu..."
-                  className="w-full rounded-xl py-3 pl-10 pr-3 text-sm outline-none"
-                  style={{ background: "var(--ui-panel)", border: "1px solid var(--ui-border-strong)", color: "var(--ui-text)" }}
+                  className="w-full py-3 pl-10 pr-3 text-sm outline-none"
+                  style={{
+                    background: "var(--ui-panel)",
+                    border: "2px solid var(--ui-border-strong)",
+                    color: "var(--ui-text)",
+                  }}
                 />
               </div>
             </div>
 
             {grouped.length === 0 && (
-              <p className="py-12 text-center font-medium uppercase tracking-[0.08em]" style={{ color: "var(--ui-text-muted)" }}>
+              <p
+                className="py-12 text-center font-bold uppercase tracking-[0.08em]"
+                style={{ color: "var(--ui-text-muted)" }}
+              >
                 Nothing matches those filters.
               </p>
             )}
+
             {grouped.map((g) => (
               <div key={g.category} id={CATEGORY_IDS[g.category]} className="mb-12 scroll-mt-32">
-                <h2 className="mb-5 text-2xl font-black uppercase tracking-[0.08em] md:text-3xl" style={{ color: "var(--brand-primary-soft)" }}>{g.category}</h2>
-                <div className="grid md:grid-cols-2 gap-5">
-                  {g.items.map((m) => <MenuCard key={m.name} m={m} />)}
+                {/* Category divider */}
+                <div className="mb-5 flex items-center gap-4">
+                  <h2
+                    className="text-3xl font-black uppercase tracking-[0.06em] md:text-4xl"
+                    style={{ color: "var(--brand-primary)", fontFamily: "var(--font-heading)" }}
+                  >
+                    {g.category}
+                  </h2>
+                  <div className="flex-1 h-0.5" style={{ background: "var(--brand-primary)", opacity: 0.25 }} />
+                </div>
+                <div className="grid md:grid-cols-2 gap-0 border-2" style={{ borderColor: "var(--ui-border-strong)" }}>
+                  {g.items.map((m, i) => <MenuCard key={m.name} m={m} index={i} />)}
                 </div>
               </div>
             ))}
 
-            <div className="mt-16 text-center space-y-6">
-              <p className="mx-auto max-w-2xl text-xs font-medium uppercase tracking-[0.06em]" style={{ color: "var(--ui-text-subtle)" }}>
+            <div className="mt-16">
+              <p
+                className="mx-auto max-w-2xl text-xs font-medium uppercase tracking-[0.06em]"
+                style={{ color: "var(--ui-text-subtle)" }}
+              >
                 Please inform your server of any allergies or dietary requirements. Our kitchen handles nuts,
                 dairy, gluten, shellfish and eggs and cannot guarantee complete absence of trace allergens.
               </p>
@@ -164,27 +206,35 @@ export function MenuSection() {
   );
 }
 
-function MenuCard({ m }: { m: MenuEntry }) {
+function MenuCard({ m, index }: { m: MenuEntry; index: number }) {
   const imageFallback = createImagePlaceholder(m.name, 420, 320);
   const [imageFailed, setImageFailed] = useState(!isFilled(m.image));
 
   return (
     <article
-      className="flex flex-col gap-4 overflow-hidden rounded-2xl border transition-transform hover:-translate-y-0.5 sm:flex-row"
-      style={{ background: "var(--ui-panel)", borderColor: "var(--ui-border)" }}
+      className="flex flex-col gap-0 overflow-hidden border-b-2 border-r-0 last:border-b-0 sm:flex-row md:[&:nth-child(odd)]:border-r-2"
+      style={{ background: "var(--ui-panel)", borderColor: "var(--ui-border-strong)" }}
     >
       {imageFailed ? (
-        <div className="flex h-40 w-full items-center justify-center px-2 text-center sm:h-auto sm:w-32" style={{ background: "var(--ui-panel-alt)" }}>
-          <div>
+        <div
+          className="flex h-36 w-full items-center justify-center sm:h-auto sm:w-28"
+          style={{ background: "var(--ui-panel-alt)" }}
+        >
+          <div className="text-center px-2">
             <UtensilsCrossed size={18} className="mx-auto mb-1" style={{ color: "var(--brand-primary)" }} />
-            <span className="text-[11px] font-medium uppercase leading-tight tracking-[0.08em]" style={{ color: "var(--ui-text-muted)" }}>{m.name}</span>
+            <span
+              className="text-[10px] font-bold uppercase leading-tight tracking-[0.08em]"
+              style={{ color: "var(--ui-text-muted)" }}
+            >
+              {m.name}
+            </span>
           </div>
         </div>
       ) : (
         <img
           src={m.image}
           alt={m.name}
-          className="h-40 w-full object-cover sm:h-auto sm:w-32"
+          className="h-36 w-full object-cover sm:h-auto sm:w-28"
           loading="lazy"
           onError={(event) => {
             setImageFallback(event, imageFallback);
@@ -194,16 +244,32 @@ function MenuCard({ m }: { m: MenuEntry }) {
       )}
       <div className="p-4 flex-1">
         <div className="flex justify-between items-start gap-3">
-          <h3 className="text-lg font-black uppercase tracking-[0.06em]">{m.name}</h3>
-          <span className="whitespace-nowrap text-sm font-black tracking-[0.06em]" style={{ color: "var(--brand-primary)" }}>{m.price}</span>
+          <h3
+            className="text-base font-black uppercase tracking-[0.06em]"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {m.name}
+          </h3>
+          <span
+            className="whitespace-nowrap text-base font-black tracking-[0.06em]"
+            style={{ color: "var(--brand-primary)", fontFamily: "var(--font-heading)" }}
+          >
+            {m.price}
+          </span>
         </div>
-        <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--ui-text-muted)" }}>{m.description}</p>
+        <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--ui-text-muted)" }}>
+          {m.description}
+        </p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {m.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em]"
-              style={{ background: "var(--brand-primary-opaque-12)", color: "var(--brand-primary-soft)", borderColor: "var(--brand-primary-strong)" }}
+              className="border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em]"
+              style={{
+                background: "var(--brand-primary-opaque-12)",
+                color: "var(--brand-primary-soft)",
+                borderColor: "var(--brand-primary-strong)",
+              }}
             >
               {t}
             </span>

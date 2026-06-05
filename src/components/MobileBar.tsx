@@ -5,11 +5,12 @@ import { siteConfig } from "@/siteConfig";
 export function MobileBar() {
   if (!siteConfig.sections.mobileBar) return null;
 
+  const primaryLocation = siteConfig.locations[0];
   const showReservations =
     siteConfig.integrations.reservationsEnabled &&
     (siteConfig.sections.reservationForm || siteConfig.sections.privateDining || siteConfig.sections.reservations || siteConfig.sections.gifts);
   const showMenu = siteConfig.sections.menuSpecial || siteConfig.sections.menuGrid;
-  const showCall = siteConfig.sections.contactDetails && Boolean(siteConfig.contact.phone);
+  const showCall = siteConfig.sections.contactDetails && Boolean(primaryLocation?.phone);
 
   if (!showReservations && !showMenu && !showCall) return null;
 
@@ -40,7 +41,7 @@ export function MobileBar() {
       )}
       {showCall && (
         <a
-          href={`tel:${siteConfig.contact.phone}`}
+          href={`tel:${primaryLocation?.phone}`}
           className="flex min-h-[58px] flex-1 flex-col items-center gap-1 py-3 text-xs font-bold uppercase tracking-[0.12em]"
           style={{ color: "var(--ui-text)" }}
         >

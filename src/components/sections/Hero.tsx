@@ -8,17 +8,22 @@ export function Hero() {
   const ref = useReveal<HTMLDivElement>();
   const [heroFailed, setHeroFailed] = useState(!isFilled(siteConfig.heroImage));
   const heroFallback = createGradientPlaceholder(siteConfig.restaurantName, 1600, 900);
-  const showReservationsCta = siteConfig.integrations.reservationsEnabled && (siteConfig.sections.reservationForm || siteConfig.sections.privateDining || siteConfig.sections.reservations);
+  const showReservationsCta =
+    siteConfig.integrations.reservationsEnabled &&
+    (siteConfig.sections.reservationForm ||
+      siteConfig.sections.privateDining ||
+      siteConfig.sections.reservations);
   const showMenuCta = siteConfig.sections.menuSpecial || siteConfig.sections.menuGrid;
   if (!siteConfig.sections.hero) return null;
 
   return (
     <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden">
+      {/* Background image */}
       {heroFailed ? (
         <div
           className="absolute inset-0 w-full h-full"
           style={{
-            backgroundImage: `linear-gradient(rgb(221, 29, 55), rgb(238, 255, 0)), url("${heroFallback}")`,
+            backgroundImage: `url("${heroFallback}")`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -35,52 +40,54 @@ export function Hero() {
         />
       )}
 
-      {/* 🔑 Replaced the single faint overlay with a stronger multi-stop gradient */}
+      {/* Dark overlay — no gradient, flat darkening */}
       <div
         className="absolute inset-0"
-        style={{
-          background: "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.80) 100%)",
-        }}
+        style={{ background: "rgba(0,0,0,0.62)" }}
+      />
+
+      {/* Thick brand-color bottom bar — replaces gradient fade */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-2"
+        style={{ background: "var(--brand-primary)" }}
       />
 
       <div ref={ref} className="fade-up relative z-10 max-w-4xl px-4 text-center">
+        {/* Cuisine type label — sharp box, no pill */}
         <span
-          className="mb-5 inline-block rounded-full border px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em]"
+          className="mb-5 inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em]"
           style={{
-            background: "var(--brand-primary-opaque-15)",
-            color: "var(--brand-primary-soft)",
-            borderColor: "var(--brand-primary)",
+            background: "var(--brand-primary)",
+            color: "var(--brand-on-primary)",
           }}
         >
           {siteConfig.cuisineType}
         </span>
 
-        {/* 🔑 Added drop-shadow to make the title pop off the image */}
+        {/* Main headline — condensed, massive, all-caps */}
         <h1
-          className="text-5xl font-black leading-[0.9] tracking-[0.02em] md:text-7xl lg:text-8xl"
-          style={{ filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.7))" }}
+          className="text-6xl font-black leading-[0.88] tracking-[0.02em] md:text-8xl lg:text-9xl"
+          style={{
+            color: "#fff",
+            fontFamily: "var(--font-heading)",
+            textShadow: "4px 4px 0 rgba(0,0,0,0.4)",
+          }}
         >
-          <span className="text-gradient-gold">{siteConfig.restaurantName}</span>
+          {siteConfig.restaurantName}
         </h1>
 
-        {/* 🔑 Bumped tagline to white so it reads cleanly over dark overlay */}
         <p
-          className="mx-auto mt-5 max-w-2xl text-base font-medium uppercase tracking-[0.14em] md:text-lg"
-          style={{ color: "rgba(255,255,255,0.85)", textShadow: "0 1px 6px rgba(0,0,0,0.6)" }}
+          className="mx-auto mt-6 max-w-2xl text-base font-bold uppercase tracking-[0.18em] md:text-lg"
+          style={{ color: "rgba(255,255,255,0.80)" }}
         >
           {siteConfig.tagline}
         </p>
 
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
           {showReservationsCta && (
             <Link
               to="/reservations"
-              className="rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.14em] transition-transform hover:-translate-y-0.5"
-              style={{
-                background: "linear-gradient(135deg, var(--brand-primary), var(--status-warning))",
-                color: "var(--brand-on-primary)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
-              }}
+              className="btn-primary"
             >
               Book a Table
             </Link>
@@ -88,12 +95,10 @@ export function Hero() {
           {showMenuCta && (
             <Link
               to="/menu"
-              className="rounded-full border-2 px-8 py-3.5 text-sm font-bold uppercase tracking-[0.14em] transition-colors hover:bg-[var(--brand-primary-opaque-12)]"
+              className="btn-outline"
               style={{
-                borderColor: "var(--brand-primary)",
-                color: "var(--brand-primary-soft)",
-                backdropFilter: "blur(4px)",
-                background: "rgba(0,0,0,0.25)",
+                borderColor: "#fff",
+                color: "#fff",
               }}
             >
               See the Menu

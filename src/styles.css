@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -14,8 +14,8 @@
   --brand-primary-opaque-12: color-mix(in srgb, var(--brand-primary) 12%, transparent);
   --brand-primary-opaque-15: color-mix(in srgb, var(--brand-primary) 15%, transparent);
 
-  --overlay-50: color-mix(in srgb, var(--ui-page) 50%, transparent);
-  --overlay-85: color-mix(in srgb, var(--ui-page) 85%, transparent);
+  --overlay-50: color-mix(in srgb, #000 50%, transparent);
+  --overlay-85: color-mix(in srgb, #000 85%, transparent);
 
   --font-heading: "Barlow Condensed", sans-serif;
   --font-body: "Barlow", sans-serif;
@@ -39,17 +39,17 @@
 }
 
 @layer base {
-  * { border-color: var(--ui-border); }
+  /* Global sharp-edge reset — no border-radius anywhere */
+  *, *::before, *::after {
+    border-radius: 0 !important;
+    border-color: var(--ui-border);
+  }
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--ui-page);
     color: var(--ui-text);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(circle at top, color-mix(in srgb, var(--brand-primary) 14%, transparent) 0%, transparent 34%),
-      radial-gradient(circle at bottom right, color-mix(in srgb, var(--status-warning) 10%, transparent) 0%, transparent 28%);
-    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5 {
     font-family: var(--font-heading);
@@ -59,6 +59,95 @@
 }
 
 @layer utilities {
+  /* Polaroid snapshot card — the hero design device */
+  .polaroid {
+    background: #fff;
+    padding: 12px 12px 48px 12px;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+    transform: rotate(-2deg);
+    display: inline-block;
+    position: relative;
+  }
+  .polaroid:nth-child(even) {
+    transform: rotate(1.5deg);
+  }
+  .polaroid img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* NEW! stamp on specials */
+  .stamp-new {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #C8102E;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+
+  /* Exclusivity badge below polaroid */
+  .exclusive-badge {
+    display: inline-block;
+    border: 2px solid var(--ui-text);
+    padding: 4px 14px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    background: transparent;
+    color: var(--ui-text);
+  }
+
+  /* Solid CTA button — no gradients */
+  .btn-primary {
+    display: inline-block;
+    background: var(--brand-primary);
+    color: var(--brand-on-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover {
+    background: var(--brand-primary-soft);
+  }
+
+  /* Solid outlined button */
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--brand-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    border: 2px solid var(--brand-primary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-outline:hover {
+    background: var(--brand-primary);
+    color: var(--brand-on-primary);
+  }
+
   .fade-up {
     opacity: 1;
     transform: translateY(0);
@@ -68,11 +157,14 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .text-gradient-gold {
-    background: linear-gradient(135deg, var(--status-warning), var(--brand-primary), var(--brand-primary-strong));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+
+  /* Section label pill */
+  .section-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brand-primary);
   }
-  .ring-brand { box-shadow: 0 0 0 1px var(--brand-primary), 0 0 0 4px color-mix(in srgb, var(--brand-primary) 16%, transparent); }
 }

@@ -65,12 +65,46 @@ export type MenuEntry = {
   pairingNote?: string;
 };
 
+export type LocationHours = WeeklyHours[];
+
+export type RestaurantLocation = {
+  id: string;
+  name: string;
+  address: string;
+  googleMapsUrl: string;
+  mapEmbedUrl: string;
+  parkingNote?: string;
+  accessibilityNote?: string;
+  paymentMethods: string[];
+  phone?: string;
+  whatsapp?: string;
+  hours: LocationHours;
+  delivery?: {
+    uberEatsUrl?: string;
+    mrdFoodUrl?: string;
+  };
+  isComingSoon?: boolean;
+};
+
+export type LocationSpecial = {
+  id: string;
+  name: string;
+  tagline: string;
+  description?: string;
+  price?: string;
+  image: string;
+  isNew?: boolean;
+  locationId?: string;   // undefined = available at all locations
+  badge?: string;        // e.g. "EXCLUSIVE TO LANSDOWNE"
+  tags?: MenuTag[];
+};
+
 export const siteConfig = {
   sections: {
     hero: true,
-    about: false,
-    todaysSpecial: false,
-    tastingMenu: false,
+    about: true,
+    todaysSpecial: true,
+    tastingMenu: true,
     newsletter: false,
     reservationForm: false,
     privateDining: false,
@@ -92,7 +126,7 @@ export const siteConfig = {
     banner: true,
     delivery: true,
     menu: true,
-    reservations: true,
+    reservations: false,
     gallery: true,
     specials: true,
     socials: true,
@@ -107,7 +141,7 @@ export const siteConfig = {
 
   branding: {
     logo: logoPng,
-    logoAlt: "Ziggy's Burger Joint logo",
+    logoAlt: "Pizza Familia logo",
   },
 
   iconAssets: {
@@ -127,74 +161,128 @@ export const siteConfig = {
     mrdFoodBlack: mrdFoodIconBlack,
   },
 
-  restaurantName: "Ziggy's Burger Joint",
-  tagline: "Crafted with Fire, Served with Heart",
-  cuisineType: "Burgers & Grill",
+  restaurantName: "Pizza Familia",
+  tagline: "Wood-fired Pizza & Fall-off-the-Bone Ribs",
+  cuisineType: "Pizzeria & Grill House",
   foundedYear: 2022,
 
   colors: {
-  brand: {
-    primary: "#C4521B",      // Deep, earthy orange (terracotta / burnt orange)
-    primarySoft: "#DD6B34",  // Softer, slightly brighter orange for hover
-    primaryStrong: "#9A3F12", // Darker, richer orange-brown for contrast
-    onPrimary: "#FFF8F0",    // Soft cream for text on primary
+    brand: {
+      primary: "#C4521B",      // Deep, earthy orange (terracotta / burnt orange)
+      primarySoft: "#DD6B34",  // Softer, slightly brighter orange for hover
+      primaryStrong: "#9A3F12", // Darker, richer orange-brown for contrast
+      onPrimary: "#FFF8F0",    // Soft cream for text on primary
+    },
+    ui: {
+      page: "#FDF8F2",         // Warm off-white / cream background (softer on eyes)
+      panel: "#FFFFFF",        // Clean white cards for contrast
+      panelAlt: "#FFF3E8",     // Very light orange-tinted alt background
+      text: "#2C241E",         // Dark brownish-grey (warm, not harsh black)
+      textMuted: "rgba(44, 36, 30, 0.65)",
+      textSubtle: "rgba(44, 36, 30, 0.45)",
+      border: "rgba(44, 36, 30, 0.08)",
+      borderStrong: "rgba(44, 36, 30, 0.15)",
+    },
+    status: {
+      success: "#B36B3C",      // Muted orange-brown for success (e.g., vegetarian tag)
+      warning: "#D98A4A",      // Warm golden-orange for spice / new items
+      danger: "#C4521B",       // Same as primary for consistency
+    },
   },
-  ui: {
-    page: "#FDF8F2",         // Warm off-white / cream background (softer on eyes)
-    panel: "#FFFFFF",        // Clean white cards for contrast
-    panelAlt: "#FFF3E8",     // Very light orange-tinted alt background
-    text: "#2C241E",         // Dark brownish-grey (warm, not harsh black)
-    textMuted: "rgba(44, 36, 30, 0.65)",
-    textSubtle: "rgba(44, 36, 30, 0.45)",
-    border: "rgba(44, 36, 30, 0.08)",
-    borderStrong: "rgba(44, 36, 30, 0.15)",
-  },
-  status: {
-    success: "#B36B3C",      // Muted orange-brown for success (e.g., vegetarian tag)
-    warning: "#D98A4A",      // Warm golden-orange for spice / new items
-    danger: "#C4521B",       // Same as primary for consistency
-  },
-},
 
   story:
-    "Ziggy's Burger Joint opened on Imam Haron Road in Lansdowne, Cape Town, with one mission - serve proper, hearty food without breaking the bank. From juicy smash burgers to fall-off-the-bone ribs and life-changing milkshakes, Ziggy's quickly became a go-to spot for families and food lovers across Cape Town. The vibe is casual, the portions are generous, and the passion behind every plate is real. Whether it's your first visit or your tenth, you'll leave full, happy, and already planning your next order.",
+    "Walking into Pizza Familia in Lansdowne, you sense an easygoing neighborhood retreat where the familiar buzz of chatter blends with the mouthwatering scent of wood-fired pizza and tender ribs. It's a space that invites you to slow down, whether you're grabbing a takeaway or settling into a casual meal surrounded by friendly faces. The pace here strikes a comforting balance — lively enough to feel alive, yet unhurried so you can enjoy being genuinely looked after. Staff move with natural rhythm, often sharing a smile or a few words, making the experience feel less transactional and more like visiting a neighbor's home kitchen. At Pizza Familia, ribs arrive richly basted and effortlessly tender, burgers satisfy a hearty craving, and chips are golden and well‑seasoned. There's a genuine feeling of care behind every order, turning every visit into a tasty pause in the rhythm of life at Turf Hall, Cape Town.",
 
   chef: {
-    name: "Glen",
-    title: "Front of House",
-    bio: "Glen is the face of Ziggy's - known for his warm hospitality and spot-on recommendations. Whether it's your first time or a regular Tuesday, he'll steer you right every time.",
-    quote: "Let me help you find your new favourite.",
+    name: "Prudence & Rodney",
+    title: "Front of House Team",
+    bio: "The friendly faces that make Pizza Familia feel like home. Known for engaging with kids, explaining the cooking process, and making every guest feel special.",
+    quote: "We'll make sure you leave happy.",
     image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/472817538_584965984287542_341855816063596691_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WZQvlhkmT3MQ7kNvwGCo2zP&_nc_oc=AdqofPZj_FwnVX9Rw4qpuAsos0jNsvezYIHe99SPuG-cXSpw_P_E_Ml0C_gZfh32vxk&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=q4ngXkzfICI04VEoeII6zQ&_nc_ss=7b289&oh=00_Af8NHVfqjjKsEUzPx2L6pbUzxzInatS7n70SqSMyOrNIMw&oe=6A246C5E",
-    signatureDish: "Rib Box",
+    signatureDish: "Fall-off-the-Bone Ribs",
   },
 
   heroImage: "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/641443431_1545591187568782_7144585783010805637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Q7JcJx9GOmwQ7kNvwG-ZKId&_nc_oc=AdoSGN3yMuIq7AgxRsiJgchnvGWVbIndkfuSF6Js2A1DN7jZRALIaB5EVqmhGFStvUo&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=g5_z-xpAOu5yrnqfE4bCew&_nc_ss=79289&oh=00_Af8gctsdujfYDvbhZ1xtnZUdguNpRPaHy45w7yQuWQF2jA&oe=6A27511E",
-  interiorImage: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/481990407_623775607073246_9101643582111009020_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mouVvXzSQtMQ7kNvwGPt90L&_nc_oc=Adr9zMkTqkXY0srCoPsNMrYNqagtyQsB8J_UL8bPGqXEinTJ1iJFML2io-TAYYW14Sc&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=1EsF7E40EP5NKKSD9vhLLg&_nc_ss=7b289&oh=00_Af8anyxjJkML84YjyajZOpADnGLB1lLFl3YdqyQRdtBWkQ&oe=6A247A9B",
+  interiorImage: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/605588629_1492746026186632_6383142529478895216_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=o6wZlcDOxh4Q7kNvwEs3tvV&_nc_oc=Ado7Yuy26Q3Uiu-1Nor8HOiTBG_CTEdQuMGgWniATZSgvhZ20dFB14uPzoTIEIDOjqs&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=NR3DfqpuJyxbJKS7CzH1KQ&_nc_ss=7b289&oh=00_Af_UitTsMwKykzR50eE-K63bw3NKSdnz79kT85FnNs1Rag&oe=6A28759C",
 
   stats: [
     { label: "Established", value: "2022" },
-    { label: "Rating", value: "5 Stars on Google" },
-    { label: "Location", value: "Lansdowne, Cape Town" },
+    { label: "Rating", value: "4.5 Stars (229 reviews)" },
+    { label: "Location", value: "Turf Hall, Lansdowne" },
   ],
 
-  hours: [
-    { day: "Monday", dayIndex: 1, isOpen: true, openTime: "13:00", closeTime: "21:00" },
-    { day: "Tuesday", dayIndex: 2, isOpen: true, openTime: "11:00", closeTime: "21:00" },
-    { day: "Wednesday", dayIndex: 3, isOpen: true, openTime: "11:00", closeTime: "21:00" },
-    { day: "Thursday", dayIndex: 4, isOpen: true, openTime: "11:00", closeTime: "21:00" },
-    { day: "Friday", dayIndex: 5, isOpen: true, openTime: "11:00", closeTime: "22:00" },
-    { day: "Saturday", dayIndex: 6, isOpen: true, openTime: "11:00", closeTime: "22:00" },
-    { day: "Sunday", dayIndex: 0, isOpen: true, openTime: "11:00", closeTime: "21:00" },
-  ] as WeeklyHours[],
+  // ---------------------------------------------------------------------------
+  // LOCATIONS
+  // ---------------------------------------------------------------------------
+  locations: [
+    {
+      id: "lansdowne",
+      name: "Lansdowne",
+      address: "1 Blomvlei Rd, Turf Hall, Cape Town, 7780, South Africa",
+      googleMapsUrl: "https://maps.app.goo.gl/A85GcSkX2NhZHvHz5", // keep existing, user didn't provide new
+      mapEmbedUrl: "https://www.google.com/maps?q=-33.9892698,18.5001025&output=embed",
+      parkingNote: "Free parking lot and free street parking available.",
+      accessibilityNote: "",
+      paymentMethods: ["Cash", "Visa", "Mastercard", "Tap", "EFT", "NFC mobile payments"],
+      phone: "+27 72 445 1273",
+      whatsapp: "+27724451273",
+      delivery: {
+        uberEatsUrl: "https://www.ubereats.com/za/store/ziggys-burger-joint/EZd4Eng1U5ibO6LxaNoB_w?srsltid=AfmBOoqpVidOEg-gzIYpnC_Ti67XXNPBja5GWzrg_6cctYpmBERCYUX8",
+        mrdFoodUrl: "https://www.mrd.com/delivery/restaurant/ziggys-burger-joint-lansdowne/29171",
+      },
+      hours: [
+        { day: "Monday",    dayIndex: 1, isOpen: false, openTime: "", closeTime: "", note: "Closed" },
+        { day: "Tuesday",   dayIndex: 2, isOpen: true, openTime: "12:00", closeTime: "21:00" },
+        { day: "Wednesday", dayIndex: 3, isOpen: true, openTime: "12:00", closeTime: "21:00" },
+        { day: "Thursday",  dayIndex: 4, isOpen: true, openTime: "12:00", closeTime: "21:00" },
+        { day: "Friday",    dayIndex: 5, isOpen: true, openTime: "14:00", closeTime: "22:00" },
+        { day: "Saturday",  dayIndex: 6, isOpen: true, openTime: "12:00", closeTime: "22:00" },
+        { day: "Sunday",    dayIndex: 0, isOpen: true, openTime: "12:00", closeTime: "20:00" },
+      ],
+    },
+  ] as RestaurantLocation[],
 
-  location: {
-    address: "495 Imam Haron Rd, Lansdowne, Cape Town, 7780",
-    googleMapsUrl: "https://maps.app.goo.gl/A85GcSkX2NhZHvHz5",
-    mapEmbedUrl: "https://www.google.com/maps?q=-33.9892698,18.5001025&output=embed",
-    parkingNote: "Street parking available on Imam Haron Rd.",
-    accessibilityNote: "",
-    paymentMethods: ["Cash", "Visa", "Mastercard", "Tap", "EFT"],
-  },
+  // ---------------------------------------------------------------------------
+  // SPECIALS
+  // ---------------------------------------------------------------------------
+  specials: [
+    {
+      id: "dunkd-tenders",
+      name: "DUNK'D TENDERS",
+      tagline: "keep it saucy",
+      description: "Crispy chicken tenders dunked in our signature sauce, served with chips",
+      price: "R89",
+      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/701173625_1621509426643624_907325665415166544_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tlxou6y4QDQQ7kNvwEsyqDw&_nc_oc=AdrAAoY4vc5Nh7kWZ0eVkIRGwuIrgtgnY1bD_3pd8tUljqa7HWBQ1TQXrfwxcBV3e4Y&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=5kAM3EzENKDOVms5cnEiMg&_nc_ss=7b289&oh=00_Af_gwmotvuzok01pVGpBJOLlb-M-9oBCVqF3dTqjzcBTzA&oe=6A287F72",
+      isNew: true,
+      locationId: "lansdowne",
+      badge: "EXCLUSIVE TO LANSDOWNE",
+      tags: ["New"] as MenuTag[],
+    },
+    {
+      id: "ribnroll",
+      name: "RIBnROLL",
+      tagline: "Happy HUMP Day! 😍",
+      description: "200g ribs, 4x winglets, OG burger, fries",
+      price: "R169",
+      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/505891301_1310134061114497_5518064185976443497_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=lu6fVh2jmrUQ7kNvwHEBP-L&_nc_oc=AdrMfF1IDXXrJkP1E5oKrSeTbIMUQNdyh9SK0pW8eBcgabeDxO1EixFvr_qyrHbv9oY&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=f7T_uzTxdMJY4bWYn5Uh_Q&_nc_ss=7b289&oh=00_Af-ausDKv0rv52DGggJ85t2ZGtc2WAAZoo-S8mY-8KqkPA&oe=6A285F00",
+      isNew: false,
+      locationId: undefined,
+      badge: "WEDNESDAY SPECIAL",
+      tags: [] as MenuTag[],
+    },
+    {
+      id: "triple-fix",
+      name: "THURSDAY THE TRIPLE FIX",
+      tagline: "2+1 = 3 … this trio for only R240, in this economy!",
+      description: "1x Large Margherita or Garlic Chita pizza + 2x Original Single burgers (beef or chicken) + fries",
+      price: "R240",
+      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/506529016_1310880747706495_6334283291520103000_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PF_nzPlMK98Q7kNvwHzS8_b&_nc_oc=Adp_W7JQn0bP0XtouKONBlMi_B29eXbSzH4sd-6TAm99oQFTGsLfQBiF938Y75rBVfw&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=Igx4BOyMzjSlB6IumRKz7Q&_nc_ss=7b289&oh=00_Af9FPWlrXN7Pl46rgkiK25f5d9OSyZvS_rU7JTn9tOGrhA&oe=6A288F1A",
+      isNew: true,
+      locationId: undefined,
+      badge: "THURSDAY SPECIAL",
+      tags: ["New"] as MenuTag[],
+    },
+  ] as LocationSpecial[],
 
   reservations: {
     note: "We'll confirm your booking as soon as we can.",
@@ -208,30 +296,21 @@ export const siteConfig = {
   },
 
   menuFilters: {
-  categories: [
-    "All",
-    "Burgers",
-    "Pizzas",
-    "Combos",
-    "Grills",
-    "Starters",
-    "Light Meals",
-    "Extras"
-  ] as const,
-  tags: ["Vegetarian", "Spicy", "Signature", "Seafood", "Halal", "New"] as MenuTag[],
-},
-
-  todaysSpecial: {
-    name: "The Rib Box",
-    description: "1kg beef ribs, BBQ sausage, 6 full sticky wings, fries and onion rings. The full experience.",
-    price: "R600",
-    image: "",
-    tags: ["Signature", "Chef's Pick"] as MenuTag[],
-    note: "Best shared - or not. We don't judge.",
+    categories: [
+      "All",
+      "Burgers",
+      "Pizzas",
+      "Combos",
+      "Grills",
+      "Starters",
+      "Light Meals",
+      "Extras"
+    ] as const,
+    tags: ["Vegetarian", "Spicy", "Signature", "Seafood", "Halal", "New"] as MenuTag[],
   },
 
   tastingMenu: {
-    name: "The Ziggy's Experience",
+    name: "The Pizza Familia Experience",
     courses: 4,
     price: "R450 per person",
     winePairing: "",
@@ -289,7 +368,7 @@ export const siteConfig = {
     { name: "COMBO 3", description: "400g ribs, garlic pita, 6x crispy chicken strips with a spicy or sweet dip", price: "R305", category: "Combos", tags: [], image: "" },
     { name: "ULTIMATE COMBO", description: "800g ribs, 10x wings, 4x skewers, 2x danhia sausage & 1x garlic pita", price: "R680", category: "Combos", tags: ["Signature"], image: "" },
 
-    // ===== EXTRAS (from the XTRAS table) =====
+    // ===== EXTRAS =====
     { name: "Chopped Chilli", description: "Fresh chopped chilli", price: "R10", category: "Extras", tags: ["Spicy"], image: "" },
     { name: "Fried Egg", description: "Fried egg", price: "R18", category: "Extras", tags: [], image: "" },
     { name: "Sliced Avo", description: "Fresh sliced avocado", price: "R18", category: "Extras", tags: [], image: "" },
@@ -320,43 +399,44 @@ export const siteConfig = {
   ],
 
   reviews: [
-    { name: "Amatullah H.", location: "Cape Town", stars: 5, quote: "All I can say is YOH!! Amazing, honestly well done. A huge variety of options - like Spur on steroids. Try the Turkish Delight gourmet shake. LIFE CHANGING!" },
-    { name: "Faaeze D.", location: "Cape Town", stars: 5, quote: "Our waiter Glen was so helpful with his suggestions. The rib box was way too much for 2 people but our kids enjoyed the leftovers. Food was delicious, so was the custard dream milkshake. We will definitely be back." },
-    { name: "Rafee'ah A.", location: "Cape Town", stars: 5, quote: "I had the 500g ribs and a mango crush which I absolutely loved. First time coming here but will definitely not be my last." },
-    { name: "Kauthar I.", location: "Cape Town", stars: 5, quote: "Tender and flavorful steak, top-notch service, great ambiance - and the best part? It's affordable. Exceptional quality without breaking the bank." },
-    { name: "Shanny H.", location: "Cape Town", stars: 5, quote: "Tried the ribs and wings combo for the first time - I honestly enjoyed the whole meal. Will definitely be back for the smash burgers." },
+    { name: "Thakirah Samsodien", location: "Cape Town", stars: 5, quote: "The absolute best, it's my go-to place if I don't feel like making food and especially if you have a craving for soft juicy ribs! The best burgers and the best customer service. I would recommend this place to everyone and anyone." },
+    { name: "Afrika Lovers", location: "Cape Town", stars: 4, quote: "We had Combo 1. Amazing ribs - the best we had in Cape Town thus far. The chicken wings were average and also the braai sausage. Chips good 4 out of 5." },
+    { name: "Roesdien Martin", location: "Cape Town", stars: 5, quote: "We were very disappointed going to your GB branch just to find out no Rib's meal available.. However went to Lansdowne and my oh my That RIB'S Combo and Original double burger meal was freaking divinely amazing. Shukran Pizza Familia." },
+    { name: "Cookie Monster", location: "Cape Town", stars: 5, quote: "Pizza Familia has become a weekly norm for me... Their ribs are extremely well basted, soft and easily fall off the bone – definitely in my top five for best cooked and seasoned ribs in Cape Town. Consistency plays a huge role and they deliver great food every time. Highly recommended!" },
+    { name: "Tracy Bee", location: "Cape Town", stars: 5, quote: "Such great staff that interact with you while waiting, entertaining our 2 year old and explaining the processes to her. Thanks so much Prudence, Africa, Rodney and Nkosi – you guys are very special and the pizza was absolutely delicious! 11/10." },
+    { name: "Ielhaam Raziet", location: "Cape Town", stars: 5, quote: "Bought the Wednesday special last night, and tried the chicken tenders for the first time. By far the best chicken strips I ever had! Crunchy and tasty on the outside but soft and juicy on the inside. The ribs speak for themselves, always a winner." },
   ],
 
   ratings: {
-    googleRating: 3.9,
-    reviewCount: 90,
+    googleRating: 4.5,
+    reviewCount: 229,
     tripAdvisorUrl: "",
     leaveReviewUrl: "https://maps.app.goo.gl/A85GcSkX2NhZHvHz5",
   },
 
   pressFeatures: [
-    { publication: "Google Reviews", quote: "Like Spur on steroids - a huge variety with real quality at prices that make sense." },
-    { publication: "Cape Town Locals", quote: "Generous portions, friendly faces, and food that hits every single time." },
-    { publication: "Lansdowne Community", quote: "Ziggy's is the kind of spot you tell everyone about after your very first visit." },
+    { publication: "Google Reviews", quote: "The absolute best – soft juicy ribs, best burgers, and best customer service." },
+    { publication: "Cape Town Foodies", quote: "Pizza Familia serves up a great spin on Cape Malay flavours. Highly recommend." },
+    { publication: "Lansdowne Locals", quote: "A weekly norm – consistently great food, especially the ribs and Wednesday special." },
   ],
 
   gifts: {
     voucherNote: "Gift vouchers available. Perfect for birthdays and special occasions.",
     voucherUrl: "#",
-    loyaltyNote: "Regular at Ziggy's? Ask your server about our loyalty perks.",
+    loyaltyNote: "Regular at Pizza Familia? Ask your server about our loyalty perks.",
   },
 
   delivery: [
     {
       name: "Uber Eats",
-      url: "https://www.ubereats.com/za/store/ziggys-burger-joint/EZd4Eng1U5ibO6LxaNoB_w?srsltid=AfmBOoqpVidOEg-gzIYpnC_Ti67XXNPBja5GWzrg_6cctYpmBERCYUX8",
+      platformKey: "uberEatsUrl" as const,
       icon: uberEatsIcon,
       iconBlack: uberEatsIconBlack,
       iconAlt: "Uber Eats logo",
     },
     {
       name: "Mr D Food",
-      url: "https://www.mrd.com/delivery/restaurant/ziggys-burger-joint-lansdowne/29171",
+      platformKey: "mrdFoodUrl" as const,
       icon: mrdFoodIcon,
       iconBlack: mrdFoodIconBlack,
       iconAlt: "Mr D Food logo",
@@ -364,22 +444,21 @@ export const siteConfig = {
   ],
 
   contact: {
-    phone: "+27 76 992 5473",
-    whatsapp: "+27769925473",
-    email: "",
+    email: "info@pizzafamilia.co.za",
     responseTimeNote: "We'll get back to you as soon as we can.",
     cateringResponseNote: "Group bookings and private enquiries answered within 24 hours.",
   },
 
   socials: {
-    instagram: "https://www.instagram.com/ziggys_burger/",
-    tiktok: "https://www.tiktok.com/@ziggys_burger_joint",
-    facebook: "https://www.facebook.com/ziggysburgerjoint/",
-    handle: "@ziggysburgerjoint",
-    whatsappChannelUrl: "https://wa.me/27769925473",
+    instagram: "https://www.instagram.com/pizza_fam_gb/",
+    tiktok: "https://www.tiktok.com/@pizza_fam_gb",
+    facebook: "https://www.facebook.com/pizzafamiliagb/",
+    handle: "@pizza_fam_gb",
+    whatsappChannelUrl: "https://wa.me/27724451273",
   },
 };
 
 export type MenuItem = (typeof siteConfig.menu)[number];
+export type Special = (typeof siteConfig.specials)[number];
+export type Location = (typeof siteConfig.locations)[number];
 export const data = siteConfig;
-
