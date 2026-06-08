@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { siteConfig } from "@/siteConfig";
 import { useReveal } from "@/lib/hooks";
 import { Flame, ChevronLeft, ChevronRight } from "lucide-react";
 import { createGradientPlaceholder, isFilled, setImageFallback } from "@/lib/utils";
+import { AddSpecialToCartButton } from "@/components/ui/AddSpecialToCartButton";
 
 export function TodaysSpecial() {
   const ref = useReveal<HTMLDivElement>();
@@ -20,12 +20,6 @@ export function TodaysSpecial() {
       behavior: "smooth",
     });
   };
-
-  const canReserve =
-    siteConfig.integrations.reservationsEnabled &&
-    (siteConfig.sections.reservationForm ||
-      siteConfig.sections.privateDining ||
-      siteConfig.sections.reservations);
 
   return (
     <section
@@ -77,7 +71,7 @@ export function TodaysSpecial() {
           style={{ scrollbarWidth: "none" }}
         >
           {specials.map((special) => (
-            <SpecialCard key={special.id} special={special} canReserve={canReserve} />
+            <SpecialCard key={special.id} special={special} />
           ))}
         </div>
       </div>
@@ -85,17 +79,21 @@ export function TodaysSpecial() {
   );
 }
 
-function SpecialCard({ special, canReserve }: { special: typeof siteConfig.specials[0]; canReserve: boolean }) {
+function SpecialCard({ special }: { special: typeof siteConfig.specials[0] }) {
   const [imageFailed, setImageFailed] = useState(!isFilled(special.image));
   const fallbackImage = createGradientPlaceholder(special.name, 400, 300);
 
   return (
-    <div className="polaroid w-72 flex-none snap-start bg-white shadow-md md:w-auto md:flex-1">
-      {/* Image area */}
+    <div className="polaroid relative w-72 flex-none snap-start bg-white shadow-md md:w-auto md:flex-1">
+      {/* NEW! stamp - outside image container, positioned relative to polaroid */}
+      {special.isNew && (
+        <div className="stamp-new absolute -top-3 -right-3 z-20">
+          NEW!
+        </div>
+      )}
+
+      {/* Image area - keep overflow-hidden but stamp is outside now */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-        {special.isNew && (
-          <div className="stamp-new absolute top-2 right-2 z-10">NEW!</div>
-        )}
         {imageFailed ? (
           <div
             className="h-full w-full bg-cover bg-center"
@@ -115,7 +113,7 @@ function SpecialCard({ special, canReserve }: { special: typeof siteConfig.speci
         )}
       </div>
 
-      {/* Content below polaroid */}
+      {/* Content below polaroid - unchanged */}
       <div className="mt-3 text-center">
         <h3
           className="text-base font-black uppercase tracking-wide"
@@ -144,14 +142,11 @@ function SpecialCard({ special, canReserve }: { special: typeof siteConfig.speci
             {special.badge}
           </div>
         )}
-        {canReserve && (
-          <Link
-            to="/reservations"
-            className="btn-primary mt-3 inline-block py-2 px-4 text-xs"
-          >
-            Get This Deal
-          </Link>
-        )}
+
+        {/* Add to Cart button */}
+        <div className="mt-3">
+          <AddSpecialToCartButton special={special} className="w-full" />
+        </div>
       </div>
     </div>
   );

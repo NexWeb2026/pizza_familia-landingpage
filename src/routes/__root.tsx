@@ -14,6 +14,7 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { useHashScroll } from "@/lib/hooks";
 import { siteConfig } from "@/siteConfig";
 import { getThemeStyleVars } from "@/lib/utils";
+import { CartProvider } from "@/context/CartContext"; // 👈 ADD THIS
 
 function NotFoundComponent() {
   return (
@@ -115,7 +116,9 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <AppShell />
+      <CartProvider> 
+        <AppShell />
+      </CartProvider>
     </QueryClientProvider>
   );
 }

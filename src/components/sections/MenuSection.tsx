@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { siteConfig, type MenuTag, type MenuEntry } from "@/siteConfig";
 import { Search, UtensilsCrossed } from "lucide-react";
 import { createImagePlaceholder, isFilled, setImageFallback } from "@/lib/utils";
+import { AddToCartButton } from "@/components/ui/AddToCartButton"; // 👈 ADDED
 
 const CATEGORY_IDS: Record<string, string> = {
   Grills: "grills",
@@ -62,34 +63,6 @@ export function MenuSection() {
             What's on<br />the Grill
           </h1>
         </div>
-
-        {/* {showTastingMenu && (
-          <div
-            className="mb-8 flex flex-col items-start gap-4 border-l-4 p-6 md:flex-row md:items-center"
-            style={{ background: "var(--ui-panel)", borderColor: "var(--brand-primary)" }}
-          >
-            <div className="flex-1">
-              <p className="section-label mb-1">{siteConfig.tastingMenu.courses}-Course Experience</p>
-              <h3 className="text-2xl font-black">{siteConfig.tastingMenu.name}</h3>
-              <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--ui-text-muted)" }}>
-                {siteConfig.tastingMenu.note}
-              </p>
-            </div>
-            <div>
-              <div
-                className="text-2xl font-black tracking-[0.04em]"
-                style={{ color: "var(--brand-primary)", fontFamily: "var(--font-heading)" }}
-              >
-                {siteConfig.tastingMenu.price}
-              </div>
-              {siteConfig.tastingMenu.winePairing && (
-                <div className="text-xs font-bold uppercase tracking-[0.08em]" style={{ color: "var(--ui-text-muted)" }}>
-                  + {siteConfig.tastingMenu.winePairing}
-                </div>
-              )}
-            </div>
-          </div>
-        )} */}
 
         {showMenuGrid && (
           <>
@@ -274,6 +247,10 @@ function MenuCard({ m, index }: { m: MenuEntry; index: number }) {
               {t}
             </span>
           ))}
+        </div>
+        {/* 👇 ADDED AddToCartButton */}
+        <div className="mt-3">
+          <AddToCartButton item={m} className="w-full sm:w-auto" />
         </div>
         {m.pairingNote && (
           <p className="mt-2 text-xs font-medium uppercase tracking-[0.06em]" style={{ color: "var(--ui-text-subtle)" }}>

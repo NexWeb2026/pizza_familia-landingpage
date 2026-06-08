@@ -34,7 +34,7 @@ export function ContactDetails() {
               className="flex items-center gap-4 border-b-2 p-6 transition-colors hover:bg-[var(--brand-primary)] hover:text-[var(--brand-on-primary)] group md:border-b-0 md:border-r-2"
               style={{ borderColor: "var(--ui-border-strong)" }}
             >
-              <Phone style={{ color: "var(--brand-primary)" }} className="group-hover:text-[var(--brand-on-primary)]" />
+              <Phone style={{ color: "black" }} className="group-hover:text-[var(--brand-on-primary)]" />
               <div>
                 <div className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: "var(--ui-text-muted)" }}>Phone</div>
                 <div className="text-lg font-black tracking-[0.04em]">{primaryLocation.phone}</div>
@@ -54,7 +54,7 @@ export function ContactDetails() {
               style={{ borderColor: "var(--ui-border-strong)" }}
             >
               <img
-                src={siteConfig.iconAssets.whatsapp}
+                src={siteConfig.iconAssets.whatsappBlack}
                 alt="WhatsApp"
                 width={26}
                 height={26}
@@ -69,7 +69,7 @@ export function ContactDetails() {
 
           <div className="p-6">
             <div className="mb-2 text-xs font-bold uppercase tracking-[0.18em]" style={{ color: "var(--ui-text-muted)" }}>Follow</div>
-            <SocialIcons variant="color" size={24} />
+            <SocialIcons variant="black" size={24} />
           </div>
         </div>
       </div>

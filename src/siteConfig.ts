@@ -44,6 +44,7 @@ export type MenuTag =
   | "Signature"
   | "Seafood"
   | "Halal"
+  | "Kaapstad"
   | "New";
 
 export type MenuCategory =
@@ -94,9 +95,11 @@ export type LocationSpecial = {
   price?: string;
   image: string;
   isNew?: boolean;
-  locationId?: string;   // undefined = available at all locations
-  badge?: string;        // e.g. "EXCLUSIVE TO LANSDOWNE"
+  locationId?: string;
+  badge?: string;
   tags?: MenuTag[];
+  availableDays?: number[];
+  availableHours?: { start: string; end: string };
 };
 
 export const siteConfig = {
@@ -220,15 +223,15 @@ export const siteConfig = {
       name: "Lansdowne",
       address: "1 Blomvlei Rd, Turf Hall, Cape Town, 7780, South Africa",
       googleMapsUrl: "https://maps.app.goo.gl/A85GcSkX2NhZHvHz5", // keep existing, user didn't provide new
-      mapEmbedUrl: "https://www.google.com/maps?q=-33.9892698,18.5001025&output=embed",
+      mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.9411251442584!2d18.505772375714017!3d-33.994045973179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4397e9cf9959%3A0x9c0ae8fca105e49e!2sPizza%20Familia%20-%20Lansdowne!5e0!3m2!1sen!2sza!4v1780902344119!5m2!1sen!2sza",
       parkingNote: "Free parking lot and free street parking available.",
       accessibilityNote: "",
       paymentMethods: ["Cash", "Visa", "Mastercard", "Tap", "EFT", "NFC mobile payments"],
       phone: "+27 72 445 1273",
       whatsapp: "+27724451273",
       delivery: {
-        uberEatsUrl: "https://www.ubereats.com/za/store/ziggys-burger-joint/EZd4Eng1U5ibO6LxaNoB_w?srsltid=AfmBOoqpVidOEg-gzIYpnC_Ti67XXNPBja5GWzrg_6cctYpmBERCYUX8",
-        mrdFoodUrl: "https://www.mrd.com/delivery/restaurant/ziggys-burger-joint-lansdowne/29171",
+        uberEatsUrl: "https://www.ubereats.com/za/store/pizza-familia-landsdowne/9Ozbf5gNUUKVU4JkxVR3oQ?srsltid=AfmBOoqyA2V4jwWHKPG9cgesuJlda6aysuETQBJx8qJOzXl9m87-v65W",
+        mrdFoodUrl: "https://www.mrd.com/delivery/restaurant/pizza-familia-lansdowne-lansdowne/27036",
       },
       hours: [
         { day: "Monday",    dayIndex: 1, isOpen: false, openTime: "", closeTime: "", note: "Closed" },
@@ -257,6 +260,7 @@ export const siteConfig = {
       locationId: "lansdowne",
       badge: "EXCLUSIVE TO LANSDOWNE",
       tags: ["New"] as MenuTag[],
+      // available every day (optional, omit if always)
     },
     {
       id: "ribnroll",
@@ -269,10 +273,11 @@ export const siteConfig = {
       locationId: undefined,
       badge: "WEDNESDAY SPECIAL",
       tags: [] as MenuTag[],
+      availableDays: [3], // Wednesday only
     },
     {
       id: "triple-fix",
-      name: "THURSDAY THE TRIPLE FIX",
+      name: "THE THURSDAY TRIPLE FIX",
       tagline: "2+1 = 3 … this trio for only R240, in this economy!",
       description: "1x Large Margherita or Garlic Chita pizza + 2x Original Single burgers (beef or chicken) + fries",
       price: "R240",
@@ -281,6 +286,7 @@ export const siteConfig = {
       locationId: undefined,
       badge: "THURSDAY SPECIAL",
       tags: ["New"] as MenuTag[],
+      availableDays: [4], // Thursday only
     },
   ] as LocationSpecial[],
 
@@ -306,7 +312,7 @@ export const siteConfig = {
       "Light Meals",
       "Extras"
     ] as const,
-    tags: ["Vegetarian", "Spicy", "Signature", "Seafood", "Halal", "New"] as MenuTag[],
+    tags: ["Vegetarian", "Spicy", "Signature", "Seafood", "Halal", "Kaapstad", "New"] as MenuTag[],
   },
 
   tastingMenu: {
@@ -332,22 +338,37 @@ export const siteConfig = {
     { name: "RIB BEEF EATER", description: "100% Beef patty, chopped ribs, topped with caramelized onions", price: "R165", category: "Burgers", tags: [], image: "" },
 
     // ===== PIZZAS =====
+    { name: "MARGHERITA", description: "Pomodoro base, mozzarella & herb", price: "R88", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "MARGHERITA ( KAAPSTAD )", description: "Pomodoro base, mozzarella & herb. Fully loaded", price: "R98", category: "Pizzas", tags: ["Vegetarian", "Kaapstad"], image: "" },
+    { name: "GARLIC CHITA", description: "Garlic base, mozzarella & herb", price: "R88", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "GARLIC CHITA ( KAAPSTAD )", description: "Garlic base, mozzarella & herb. Fully loaded", price: "R98", category: "Pizzas", tags: ["Vegetarian", "Kaapstad"], image: "" },
+    { name: "PEPPERONI", description: "Pomodoro base, salami & mozzarella", price: "R126", category: "Pizzas", tags: [], image: "" },
+    { name: "PEPPERONI ( KAAPSTAD )", description: "Pomodoro base, salami & mozzarella. Fully loaded", price: "R136", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "HOT HONEY FETARONI", description: "Pomodoro base, salami, feta, chilli topped with Hot Honey", price: "R142", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "HOT HONEY FETARONI ( KAAPSTAD )", description: "Pomodoro base, salami, feta, chilli topped with Hot Honey. Fully loaded", price: "R162", category: "Pizzas", tags: ["Spicy", "Kaapstad"], image: "" },
+    { name: "FOREST GUMP", description: "Mushroom, olive, spinach & feta", price: "R126", category: "Pizzas", tags: ["Vegetarian"], image: "" },
+    { name: "FOREST GUMP ( KAAPSTAD )", description: "Mushroom, olive, spinach & feta. Fully loaded", price: "R136", category: "Pizzas", tags: ["Vegetarian", "Kaapstad"], image: "" },
+    { name: "MANHATTAN", description: "BBQ chicken & mushrooms", price: "R132", category: "Pizzas", tags: [], image: "" },
+    { name: "MANHATTAN ( KAAPSTAD )", description: "BBQ chicken & mushrooms. Fully loaded", price: "R152", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "CALIFORNIAN", description: "Portuguese chicken, pineapple & feta", price: "R138", category: "Pizzas", tags: [], image: "" },
+    { name: "CALIFORNIAN ( KAAPSTAD )", description: "Portuguese chicken, pineapple & feta. Fully loaded", price: "R158", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "YING YANG", description: "Portuguese chicken, peppadew, chilli & feta", price: "R154", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "YING YANG ( KAAPSTAD )", description: "Portuguese chicken, peppadew, chilli & feta. Fully loaded", price: "R172", category: "Pizzas", tags: ["Spicy", "Kaapstad"], image: "" },
+    { name: "FRANGO", description: "Portuguese chicken, mushroom, red onion & green pepper", price: "R144", category: "Pizzas", tags: [], image: "" },
+    { name: "FRANGO ( KAAPSTAD )", description: "Portuguese chicken, mushroom, red onion & green pepper. Fully loaded", price: "R158", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "BOMBAY", description: "Tilda chicken, mushroom, peppadew & avo", price: "R164", category: "Pizzas", tags: [], image: "" },
+    { name: "BOMBAY ( KAAPSTAD )", description: "Tilda chicken, mushroom, peppadew & avo. Fully loaded", price: "R180", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "MEXICANA", description: "Spicy mince, jalapeno, peppadew & red onion", price: "R142", category: "Pizzas", tags: ["Spicy"], image: "" },
+    { name: "MEXICANA ( KAAPSTAD )", description: "Spicy mince, jalapeno, peppadew & red onion. Fully loaded", price: "R158", category: "Pizzas", tags: ["Spicy", "Kaapstad"], image: "" },
+    { name: "INDONESIAN", description: "Masala steak, red and green peppers & coriander", price: "R164", category: "Pizzas", tags: [], image: "" },
+    { name: "INDONESIAN ( KAAPSTAD )", description: "Masala steak, red and green peppers & coriander. Fully loaded", price: "R186", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "STICKY STEAK", description: "Sticky BBQ steak, caramelized onion & avo", price: "R164", category: "Pizzas", tags: [], image: "" },
+    { name: "STICKY STEAK ( KAAPSTAD )", description: "Sticky BBQ steak, caramelized onion & avo. Fully loaded", price: "R186", category: "Pizzas", tags: ["Kaapstad"], image: "" },
+    { name: "SEAFOOD PIZZA", description: "Seafood mix, crab sticks, mussels, calamari & shrimp topped with chilli", price: "R158", category: "Pizzas", tags: ["Seafood"], image: "" },
+    { name: "SEAFOOD PIZZA ( KAAPSTAD )", description: "Seafood mix, crab sticks, mussels, calamari & shrimp topped with chilli. Fully loaded", price: "R182", category: "Pizzas", tags: ["Seafood", "Kaapstad"], image: "" },
+    { name: "KING PRAWN", description: "Grilled garlic prawns, peppadew & avo", price: "R186", category: "Pizzas", tags: ["Signature", "Seafood"], image: "" },
+    { name: "KING PRAWN ( KAAPSTAD )", description: "Grilled garlic prawns, peppadew & avo. Fully loaded", price: "R206", category: "Pizzas", tags: ["Signature", "Seafood", "Kaapstad"], image: "" },
     { name: "GARLIC PITA (MED)", description: "Freshly crushed garlic, oil, spread on a medium pizza base", price: "R42", category: "Pizzas", tags: ["Vegetarian"], image: "" },
-    { name: "MARGHERITA", description: "Pomodoro base, mozzarella & herb", price: "R88 / R98", category: "Pizzas", tags: ["Vegetarian"], image: "" },
-    { name: "GARLIC CHITA", description: "Garlic base, mozzarella & herb", price: "R88 / R98", category: "Pizzas", tags: ["Vegetarian"], image: "" },
-    { name: "PEPPERONI", description: "Pomodoro base, salami & mozzarella", price: "R126 / R136", category: "Pizzas", tags: [], image: "" },
-    { name: "HOT HONEY FETARONI", description: "Pomodoro base, salami, feta, chilli topped with Hot Honey", price: "R142 / R162", category: "Pizzas", tags: ["Spicy"], image: "" },
-    { name: "FOREST GUMP", description: "Mushroom, olive, spinach & feta", price: "R126 / R136", category: "Pizzas", tags: ["Vegetarian"], image: "" },
-    { name: "MANHATTAN", description: "BBQ chicken & mushrooms", price: "R132 / R152", category: "Pizzas", tags: [], image: "" },
-    { name: "CALIFORNIAN", description: "Portuguese chicken, pineapple & feta", price: "R138 / R158", category: "Pizzas", tags: [], image: "" },
-    { name: "YING YANG", description: "Portuguese chicken, peppadew, chilli & feta", price: "R154 / R172", category: "Pizzas", tags: ["Spicy"], image: "" },
-    { name: "FRANGO", description: "Portuguese chicken, mushroom, red onion & green pepper", price: "R144 / R158", category: "Pizzas", tags: [], image: "" },
-    { name: "BOMBAY", description: "Tilda chicken, mushroom, peppadew & avo", price: "R164 / R180", category: "Pizzas", tags: [], image: "" },
-    { name: "MEXICANA", description: "Spicy mince, jalapeno, peppadew & red onion", price: "R142 / R158", category: "Pizzas", tags: ["Spicy"], image: "" },
-    { name: "INDONESIAN", description: "Masala steak, red and green peppers & coriander", price: "R164 / R186", category: "Pizzas", tags: [], image: "" },
-    { name: "STICKY STEAK", description: "Sticky BBQ steak, caramelized onion & avo", price: "R164 / R186", category: "Pizzas", tags: [], image: "" },
-    { name: "SEAFOOD PIZZA", description: "Seafood mix, crab sticks, mussels, calamari & shrimp topped with chilli", price: "R158 / R182", category: "Pizzas", tags: ["Seafood"], image: "" },
-    { name: "KING PRAWN", description: "Grilled garlic prawns, peppadew & avo", price: "R186 / R206", category: "Pizzas", tags: ["Signature", "Seafood"], image: "" },
 
     // ===== STARTERS =====
     { name: "CRUNCHY TENDERS", description: "Light & crispy chicken tenders with chips and PF dip", price: "R69", category: "Starters", tags: [], image: "" },
