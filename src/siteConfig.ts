@@ -432,7 +432,7 @@ export const siteConfig = {
     googleRating: 4.5,
     reviewCount: 229,
     tripAdvisorUrl: "",
-    leaveReviewUrl: "https://maps.app.goo.gl/A85GcSkX2NhZHvHz5",
+    leaveReviewUrl: "https://maps.app.goo.gl/8RZTkRqyeFUnwTy98",
   },
 
   pressFeatures: [
