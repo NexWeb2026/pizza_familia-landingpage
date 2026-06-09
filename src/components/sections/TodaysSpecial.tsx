@@ -1,25 +1,15 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { siteConfig } from "@/siteConfig";
 import { useReveal } from "@/lib/hooks";
-import { Flame, ChevronLeft, ChevronRight } from "lucide-react";
+import { Flame } from "lucide-react";
 import { createGradientPlaceholder, isFilled, setImageFallback } from "@/lib/utils";
 import { AddSpecialToCartButton } from "@/components/ui/AddSpecialToCartButton";
 
 export function TodaysSpecial() {
   const ref = useReveal<HTMLDivElement>();
-  const scrollRef = useRef<HTMLDivElement>(null);
   const specials = siteConfig.specials;
   
   if (!siteConfig.sections.todaysSpecial || specials.length === 0) return null;
-
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const scrollAmount = 300;
-    scrollRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <section
@@ -27,49 +17,24 @@ export function TodaysSpecial() {
       className="px-4 py-8 md:py-12"
       style={{ background: "var(--brand-primary)" }}
     >
-      <div ref={ref} className="fade-up max-w-6xl mx-auto">
-        <div className="mb-5 flex items-center justify-between">
-          <div>
-            <p
-              className="mb-1 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.28em]"
-              style={{ color: "var(--brand-on-primary)", opacity: 0.8 }}
-            >
-              <Flame size={14} /> Specials
-            </p>
-            <h2
-              className="text-3xl font-black leading-tight md:text-4xl"
-              style={{ color: "var(--brand-on-primary)", fontFamily: "var(--font-heading)" }}
-            >
-              What's Hot
-            </h2>
-          </div>
-          {/* Navigation arrows - visible on desktop */}
-          <div className="hidden gap-2 md:flex">
-            <button
-              onClick={() => scroll("left")}
-              className="rounded-sm border-2 p-1 transition hover:bg-white/10"
-              style={{ borderColor: "var(--brand-on-primary)" }}
-              aria-label="Previous special"
-            >
-              <ChevronLeft size={20} style={{ color: "var(--brand-on-primary)" }} />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="rounded-sm border-2 p-1 transition hover:bg-white/10"
-              style={{ borderColor: "var(--brand-on-primary)" }}
-              aria-label="Next special"
-            >
-              <ChevronRight size={20} style={{ color: "var(--brand-on-primary)" }} />
-            </button>
-          </div>
+      <div ref={ref} className="fade-up max-w-7xl mx-auto">
+        <div className="mb-8">
+          <p
+            className="mb-1 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.28em]"
+            style={{ color: "var(--brand-on-primary)", opacity: 0.8 }}
+          >
+            <Flame size={14} /> Specials
+          </p>
+          <h2
+            className="text-3xl font-black leading-tight md:text-4xl"
+            style={{ color: "var(--brand-on-primary)", fontFamily: "var(--font-heading)" }}
+          >
+            What's Hot
+          </h2>
         </div>
 
-        {/* Horizontal scroll container */}
-        <div
-          ref={scrollRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scrollbar-none md:grid md:grid-cols-2 md:gap-5 md:overflow-visible lg:grid-cols-3"
-          style={{ scrollbarWidth: "none" }}
-        >
+        {/* Responsive grid: 1 column on mobile, 2 on tablet, 3 on desktop */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {specials.map((special) => (
             <SpecialCard key={special.id} special={special} />
           ))}
@@ -84,15 +49,12 @@ function SpecialCard({ special }: { special: typeof siteConfig.specials[0] }) {
   const fallbackImage = createGradientPlaceholder(special.name, 400, 300);
 
   return (
-    <div className="polaroid relative w-72 flex-none snap-start bg-white shadow-md md:w-auto md:flex-1">
-      {/* NEW! stamp - outside image container, positioned relative to polaroid */}
+    <div className="polaroid relative h-full bg-white shadow-md">
       {special.isNew && (
         <div className="stamp-new absolute -top-3 -right-3 z-20">
           NEW!
         </div>
       )}
-
-      {/* Image area - keep overflow-hidden but stamp is outside now */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
         {imageFailed ? (
           <div
@@ -112,9 +74,7 @@ function SpecialCard({ special }: { special: typeof siteConfig.specials[0] }) {
           />
         )}
       </div>
-
-      {/* Content below polaroid - unchanged */}
-      <div className="mt-3 text-center">
+      <div className="mt-3 text-center px-3 pb-4">
         <h3
           className="text-base font-black uppercase tracking-wide"
           style={{ fontFamily: "var(--font-heading)", color: "#111" }}
@@ -142,8 +102,6 @@ function SpecialCard({ special }: { special: typeof siteConfig.specials[0] }) {
             {special.badge}
           </div>
         )}
-
-        {/* Add to Cart button */}
         <div className="mt-3">
           <AddSpecialToCartButton special={special} className="w-full" />
         </div>
