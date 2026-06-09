@@ -472,7 +472,7 @@ export const siteConfig = {
 
   socials: {
     instagram: "https://www.instagram.com/pizza_fam_gb/",
-    tiktok: "https://www.tiktok.com/@pizza_fam_gb",
+    tiktok: "",
     facebook: "https://www.facebook.com/pizzafamiliagb/",
     handle: "@pizza_fam_gb",
     whatsappChannelUrl: "https://wa.me/27724451273",
