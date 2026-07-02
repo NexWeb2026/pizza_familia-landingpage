@@ -178,6 +178,7 @@ export function LocationSection() {
 
   // All location data from primaryLocation
   const loc = primaryLocation;
+  const currentDayIndex = new Date().getDay();
 
   return (
     <section
@@ -265,16 +266,25 @@ export function LocationSection() {
               Hours
             </h4>
             <ul className="grid gap-0 text-sm sm:grid-cols-2 lg:grid-cols-4">
-              {loc.hours.map((h) => (
-                <li
-                  key={h.day}
-                  className="flex justify-between border px-3 py-2.5"
-                  style={{ background: "var(--ui-panel)", borderColor: "var(--ui-border-strong)", color: "var(--ui-text-muted)" }}
-                >
-                  <span className="font-bold uppercase tracking-[0.06em]">{h.day}</span>
-                  <span>{h.isOpen ? `${h.openTime}–${h.closeTime}` : "Closed"}</span>
-                </li>
-              ))}
+              {loc.hours.map((h) => {
+                const isToday = h.dayIndex === currentDayIndex;
+
+                return (
+                  <li
+                    key={h.day}
+                    className="flex justify-between border px-3 py-2.5"
+                    style={{
+                      background: isToday ? "var(--brand-primary)" : "var(--ui-panel)",
+                      borderColor: "var(--ui-border-strong)",
+                      color: isToday ? "var(--brand-on-primary)" : "var(--ui-text-muted)",
+                      fontWeight: isToday ? 800 : undefined,
+                    }}
+                  >
+                    <span className="font-bold uppercase tracking-[0.06em]">{h.day}</span>
+                    <span>{h.isOpen ? `${h.openTime}\u2013${h.closeTime}` : "Closed"}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

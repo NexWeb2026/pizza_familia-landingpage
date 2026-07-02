@@ -14,6 +14,7 @@ export function Footer() {
     (siteConfig.sections.upcomingEvents || siteConfig.sections.photoGallery || siteConfig.sections.privateHire);
 
   const loc = siteConfig.locations[0];
+  const currentDayIndex = new Date().getDay();
 
   // Resolve per-location delivery URLs using each platform's platformKey
   const deliveryLinks = siteConfig.integrations.deliveryEnabled
@@ -129,19 +130,28 @@ export function Footer() {
           </h4>
           {siteConfig.sections.hours && loc?.hours && loc.hours.length > 0 ? (
             <ul className="space-y-1">
-              {loc.hours.map((h) => (
-                <li
-                  key={h.day}
-                  className="flex justify-between gap-3 text-xs"
-                  style={{
-                    color: h.isOpen ? "rgba(253,248,242,0.75)" : "rgba(253,248,242,0.3)",
-                    fontWeight: h.isOpen ? 600 : 400,
-                  }}
-                >
-                  <span>{h.day}</span>
-                  <span>{h.isOpen ? `${h.openTime}–${h.closeTime}` : "Closed"}</span>
-                </li>
-              ))}
+              {loc.hours.map((h) => {
+                const isToday = h.dayIndex === currentDayIndex;
+
+                return (
+                  <li
+                    key={h.day}
+                    className="flex justify-between gap-3 rounded-sm px-2 py-1 text-xs"
+                    style={{
+                      background: isToday ? "var(--brand-primary)" : "transparent",
+                      color: isToday
+                        ? "var(--brand-on-primary)"
+                        : h.isOpen
+                          ? "rgba(253,248,242,0.75)"
+                          : "rgba(253,248,242,0.3)",
+                      fontWeight: isToday || h.isOpen ? 600 : 400,
+                    }}
+                  >
+                    <span>{h.day}</span>
+                    <span>{h.isOpen ? `${h.openTime}\u2013${h.closeTime}` : "Closed"}</span>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p className="text-xs" style={{ color: "rgba(253,248,242,0.4)" }}>Hours hidden.</p>

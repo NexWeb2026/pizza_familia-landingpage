@@ -1,6 +1,23 @@
-﻿import logoPng from "@/assets/png/logo.png";
+﻿import logoPng from "@/assets/images/Logo.png";
 
 import facebookIconBlack from "@/assets/svg/facebook_black.svg";
+import heroImage from "@/assets/images/hero_image.jpg";
+import interiorImage from "@/assets/images/in_image.jpg";
+import specialOneImage from "@/assets/images/special_1.jpg";
+import specialTwoImage from "@/assets/images/special_2.jpg";
+import specialThreeImage from "@/assets/images/special_3.jpg";
+import galleryOneImage from "@/assets/images/1.jpg";
+import galleryTwoImage from "@/assets/images/2.jpg";
+import galleryThreeImage from "@/assets/images/3.jpg";
+import galleryFourImage from "@/assets/images/4.jpg";
+import galleryFiveImage from "@/assets/images/5.jpg";
+import gallerySixImage from "@/assets/images/6.jpg";
+import gallerySevenImage from "@/assets/images/7.jpg";
+import galleryEightImage from "@/assets/images/8.jpg";
+import galleryNineImage from "@/assets/images/9.jpg";
+import galleryTenImage from "@/assets/images/10.jpg";
+import galleryElevenImage from "@/assets/images/11.jpg";
+import galleryTwelveImage from "@/assets/images/12.jpg";
 import instagramIconBlack from "@/assets/svg/instagram_black.svg";
 import tiktokIconBlack from "@/assets/svg/tiktok_black.svg";
 import whatsappIconBlack from "@/assets/svg/whatsapp_black.svg";
@@ -194,19 +211,19 @@ export const siteConfig = {
   },
 
   story:
-    "Walking into Pizza Familia in Lansdowne, you sense an easygoing neighborhood retreat where the familiar buzz of chatter blends with the mouthwatering scent of wood-fired pizza and tender ribs. It's a space that invites you to slow down, whether you're grabbing a takeaway or settling into a casual meal surrounded by friendly faces. The pace here strikes a comforting balance — lively enough to feel alive, yet unhurried so you can enjoy being genuinely looked after. Staff move with natural rhythm, often sharing a smile or a few words, making the experience feel less transactional and more like visiting a neighbor's home kitchen. At Pizza Familia, ribs arrive richly basted and effortlessly tender, burgers satisfy a hearty craving, and chips are golden and well‑seasoned. There's a genuine feeling of care behind every order, turning every visit into a tasty pause in the rhythm of life at Turf Hall, Cape Town.",
+    "Walking into Pizza Familia in Lansdowne, you sense an easygoing neighborhood retreat where the familiar buzz of chatter blends with the mouthwatering scent of wood-fired pizza and tender ribs. It's a space that invites you to slow down, whether you're grabbing a takeaway or settling into a casual meal surrounded by friendly faces. The pace here strikes a comforting balance — lively enough to feel alive, yet unhurried so you can enjoy being genuinely looked after. Staff move with natural rhythm, often sharing a smile or a few words, making the experience feel less transactional and more like visiting a neighbor's home kitchen. At Pizza Familia, ribs arrive richly basted and effortlessly tender, burgers satisfy a hearty craving, and chips are golden and well-seasoned. There's a genuine feeling of care behind every order, turning every visit into a tasty pause in the rhythm of life at Turf Hall, Cape Town.",
 
   chef: {
     name: "Prudence & Rodney",
     title: "Front of House Team",
     bio: "The friendly faces that make Pizza Familia feel like home. Known for engaging with kids, explaining the cooking process, and making every guest feel special.",
     quote: "We'll make sure you leave happy.",
-    image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/472817538_584965984287542_341855816063596691_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WZQvlhkmT3MQ7kNvwGCo2zP&_nc_oc=AdqofPZj_FwnVX9Rw4qpuAsos0jNsvezYIHe99SPuG-cXSpw_P_E_Ml0C_gZfh32vxk&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=q4ngXkzfICI04VEoeII6zQ&_nc_ss=7b289&oh=00_Af8NHVfqjjKsEUzPx2L6pbUzxzInatS7n70SqSMyOrNIMw&oe=6A246C5E",
+    image: interiorImage,
     signatureDish: "Fall-off-the-Bone Ribs",
   },
 
-  heroImage: "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/641443431_1545591187568782_7144585783010805637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Q7JcJx9GOmwQ7kNvwG-ZKId&_nc_oc=AdoSGN3yMuIq7AgxRsiJgchnvGWVbIndkfuSF6Js2A1DN7jZRALIaB5EVqmhGFStvUo&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=g5_z-xpAOu5yrnqfE4bCew&_nc_ss=79289&oh=00_Af8gctsdujfYDvbhZ1xtnZUdguNpRPaHy45w7yQuWQF2jA&oe=6A27511E",
-  interiorImage: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/605588629_1492746026186632_6383142529478895216_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=o6wZlcDOxh4Q7kNvwEs3tvV&_nc_oc=Ado7Yuy26Q3Uiu-1Nor8HOiTBG_CTEdQuMGgWniATZSgvhZ20dFB14uPzoTIEIDOjqs&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=NR3DfqpuJyxbJKS7CzH1KQ&_nc_ss=7b289&oh=00_Af_UitTsMwKykzR50eE-K63bw3NKSdnz79kT85FnNs1Rag&oe=6A28759C",
+  heroImage,
+  interiorImage,
 
   stats: [
     { label: "Established", value: "2022" },
@@ -255,7 +272,7 @@ export const siteConfig = {
       tagline: "keep it saucy",
       description: "Crispy chicken tenders dunked in our signature sauce, served with chips",
       price: "R89",
-      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/701173625_1621509426643624_907325665415166544_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tlxou6y4QDQQ7kNvwEsyqDw&_nc_oc=AdrAAoY4vc5Nh7kWZ0eVkIRGwuIrgtgnY1bD_3pd8tUljqa7HWBQ1TQXrfwxcBV3e4Y&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=5kAM3EzENKDOVms5cnEiMg&_nc_ss=7b289&oh=00_Af_gwmotvuzok01pVGpBJOLlb-M-9oBCVqF3dTqjzcBTzA&oe=6A287F72",
+      image: specialOneImage,
       isNew: true,
       locationId: "lansdowne",
       badge: "EXCLUSIVE TO LANSDOWNE",
@@ -265,10 +282,10 @@ export const siteConfig = {
     {
       id: "ribnroll",
       name: "RIBnROLL",
-      tagline: "Happy HUMP Day! 😍",
+      tagline: "Happy HUMP Day!",
       description: "200g ribs, 4x winglets, OG burger, fries",
       price: "R169",
-      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/505891301_1310134061114497_5518064185976443497_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=lu6fVh2jmrUQ7kNvwHEBP-L&_nc_oc=AdrMfF1IDXXrJkP1E5oKrSeTbIMUQNdyh9SK0pW8eBcgabeDxO1EixFvr_qyrHbv9oY&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=f7T_uzTxdMJY4bWYn5Uh_Q&_nc_ss=7b289&oh=00_Af-ausDKv0rv52DGggJ85t2ZGtc2WAAZoo-S8mY-8KqkPA&oe=6A285F00",
+      image: specialTwoImage,
       isNew: false,
       locationId: undefined,
       badge: "WEDNESDAY SPECIAL",
@@ -281,7 +298,7 @@ export const siteConfig = {
       tagline: "2+1 = 3 … this trio for only R240, in this economy!",
       description: "1x Large Margherita or Garlic Chita pizza + 2x Original Single burgers (beef or chicken) + fries",
       price: "R240",
-      image: "https://scontent-cpt1-1.xx.fbcdn.net/v/t39.30808-6/506529016_1310880747706495_6334283291520103000_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PF_nzPlMK98Q7kNvwHzS8_b&_nc_oc=Adp_W7JQn0bP0XtouKONBlMi_B29eXbSzH4sd-6TAm99oQFTGsLfQBiF938Y75rBVfw&_nc_zt=23&_nc_ht=scontent-cpt1-1.xx&_nc_gid=Igx4BOyMzjSlB6IumRKz7Q&_nc_ss=7b289&oh=00_Af9FPWlrXN7Pl46rgkiK25f5d9OSyZvS_rU7JTn9tOGrhA&oe=6A288F1A",
+      image: specialThreeImage,
       isNew: true,
       locationId: undefined,
       badge: "THURSDAY SPECIAL",
@@ -405,20 +422,19 @@ export const siteConfig = {
   events: [] as EventListing[],
 
   gallery: [
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/641283763_1545591180902116_4668162461911570044_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_2tgzyzOYw8Q7kNvwE8_4rN&_nc_oc=Adp2_gZ6F-Dvmoi_3URl9w1cN7mxVgFkgJbnHK8ConzjINlxHWOz5DaTcvWEKZpkzhc&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=1Xy3tiqBcLE2MtwoUYFJnQ&_nc_ss=79289&oh=00_Af_xmMZaj6GAp47Wrc2aJFdIgzfCoNnaNO-pUQUFr2d0oQ&oe=6A277054",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/640922769_1545591170902117_3965257682204357457_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BK4zvGL0i2UQ7kNvwFPQLr-&_nc_oc=AdrAbyZQu9G30PBhiObJXSaV60LgCwOTMnMiNzpDEhAzqTm1YbuwbX98FLQ63OT_fos&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=BeMnmPYasCbenTh2ymiM1w&_nc_ss=79289&oh=00_Af-fkHOgmIViZX1egqVb_LDFJij83jBB8mTKLKzsrBZfSw&oe=6A277A4B",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/625003270_1524045743056660_1084960176279511790_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=aH-i365jmW0Q7kNvwFGYTDT&_nc_oc=AdqnzQGvC8eYZ8ScOhg0p6Ib_bSuLI_fTMo3RpF0x4J2sIDYuULY-T06F9ypwpRfJaY&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=a0F4pU4H2qwfTLF435z60w&_nc_ss=79289&oh=00_Af_JhYAAgppG3L6xXCAFrsE-igbVYeMGpaoYYTo6wvIx9w&oe=6A2775C8",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/622792707_1520453933415841_480797047736333375_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-JGNIqoiOswQ7kNvwGQVIAN&_nc_oc=AdqoJPhPFMTqmnYrbodjCHkRFAsRpsWDUephrFYfS75khgfEXU4BNzANybDVW38W_CI&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=yA5DTY1U4NSKOH09PWwVGw&_nc_ss=79289&oh=00_Af-nhsYFIu1YbAjGDwLLmta0vb7HuzmfPiKOpyjByD-pIg&oe=6A27753D",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/622801797_1520453923415842_702769200983164966_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ucCmxjjNLzoQ7kNvwH2n3KU&_nc_oc=AdrCd4bLGHaBj3tZesVO6bGNZqWp-TqoPC2Cr1YGvG6AHGMMHhxBit56O98SJxmja-A&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=5ZTS6XOkbhNzZ0Rz4f4ADg&_nc_ss=79289&oh=00_Af-Z0BeD2utZKODrVjSIX3x6lIt395wRaOO5DFuvVf14IA&oe=6A27733A",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605972673_1492746029519965_1001325332393708440_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xOpNT769nzIQ7kNvwFslCtc&_nc_oc=Adra79x9El5McwA0_qrYzc5c-_eHxS2ApUwi9NWBrraJA8PqE8sVUmhBE7xGbkdACVk&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=dnVzLHlgl1qXvU3wWSvXlA&_nc_ss=79289&oh=00_Af_ZdZLl2v7jDZEy0skKZccxfRg922hOS6ftNN4BsYpsRQ&oe=6A276E19",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605711389_1492745982853303_4353673147947474009_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7p1QKW_nL24Q7kNvwFBu6PC&_nc_oc=AdpquiycwY9EIQY3hED62hzODFroNizaoOSZ-7wbjFEFaYhJfbtG0xLkL9vKcgoeNlA&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=Apk3s5KfX5Wt4tv48D7qQA&_nc_ss=79289&oh=00_Af-UD4FiwQCNOaPUK8LRu02AaWloe1UobVkiGT7tOuFLjA&oe=6A2755EE",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605564745_1492746002853301_8342202110893597844_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LruEiimyBHkQ7kNvwHM2WDp&_nc_oc=Adq3-JCmRbhsixqXHNgZCFunQ6eOg2NYeFS6iM5YA-xStC6ThrEUNq-Gk05lNEWy5qU&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=pvkWSNW4-P_Ifl-VY2iaWg&_nc_ss=79289&oh=00_Af_0j5aZ2_HQP9BXzscPJ2vvnz3ZOCN8q-yzjtroJS5zOg&oe=6A277753",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/607198907_1492745986186636_3579470218406296968_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=i1CEAiQ--UAQ7kNvwEVEj5D&_nc_oc=AdoGjChsxVZv0QVkkFY19f39dVIfRhwutHASsi3cBxHZ0l5II2VmYbQtz6i-md_sQs8&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=YFiFq9O68_NUdtT8zx71zQ&_nc_ss=79289&oh=00_Af9HbHL2aTmlyOBd5yaC6wkeDD328cOK6KbeQHoeuZ0WrQ&oe=6A277930",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605808641_1492746006186634_972742256606910145_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hNRQbTnc53sQ7kNvwE0RvIP&_nc_oc=Adpf2bQbIh5-vaKsDyfk5CNTUG7dlZCVDY5YWS9ZOArOjtidZ_7dClwx9bBH1rSDQX8&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=FIgF-AV2Q4jm8XWs2BiyRA&_nc_ss=79289&oh=00_Af8hTk002EPvUa-y2xXEpX23bEEmebqtgqXY6BQFS7kMsg&oe=6A275EE7",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/605720338_1492745992853302_6980270250551285461_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=niuRQ2Muo_UQ7kNvwGfHJvI&_nc_oc=AdoI0OjQchvA6ZkP4KP6Xvj_07ZVWSbfrrVFUZh70tyyVeJTxih80Ia2Gi5wsGANnzw&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=5j4rSminQY2uGLwrIzECrg&_nc_ss=79289&oh=00_Af85Nd5LqMEtSaInlwLT55P-a5VXxaowPVLe5aW0Le9FUw&oe=6A27807C",
-    "https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/606012438_1492745996186635_3098080510748781145_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=boh4XazebB4Q7kNvwHc-qEA&_nc_oc=Adplpj3MB9J1eVuQpmhaaQJ8_btAUcQJOaFQI5qf9Z6lTBLnZDwobNt1A_TLDO0mOBg&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=wQTxJuR2r3_60lEw5NUqHw&_nc_ss=79289&oh=00_Af-bJ4X1qHxUvqKU8-oD7eKeFaKjJkzc1AU2Nl6uCXU5yA&oe=6A275ADD",
+    galleryOneImage,
+    galleryTwoImage,
+    galleryThreeImage,
+    galleryFourImage,
+    galleryFiveImage,
+    gallerySixImage,
+    gallerySevenImage,
+    galleryEightImage,
+    galleryNineImage,
+    galleryTenImage,
+    galleryElevenImage,
+    galleryTwelveImage,
   ],
-
   reviews: [
     { name: "Thakirah Samsodien", location: "Cape Town", stars: 5, quote: "The absolute best, it's my go-to place if I don't feel like making food and especially if you have a craving for soft juicy ribs! The best burgers and the best customer service. I would recommend this place to everyone and anyone." },
     { name: "Afrika Lovers", location: "Cape Town", stars: 4, quote: "We had Combo 1. Amazing ribs - the best we had in Cape Town thus far. The chicken wings were average and also the braai sausage. Chips good 4 out of 5." },
